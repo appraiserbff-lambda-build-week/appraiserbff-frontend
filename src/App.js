@@ -4,7 +4,7 @@ import axios from "axios";
 import { Route } from "react-router-dom";
 import { mockDataPull } from "./actions";
 import { connect } from "react-redux";
-import { withRouter } from "react-router-dom";
+import { withRouter, Redirect } from "react-router-dom";
 // Styles
 import "./globalStyles.scss";
 import "./App.scss";
@@ -26,20 +26,34 @@ import Login from "./components/Login/";
 
 class App extends Component {
   componentDidMount() {
-    this.props.mockDataPull();
+    //this.props.mockDataPull();
   }
   render() {
     return (
       <div className="appContainer">
-        <Route path="/home/login" render={props => <Login {...props} />} />
+        {localStorage.getItem("token") ? (
+          <Redirect to="/home/" />
+        ) : (
+          <Redirect to="/home/login/" />
+        )}
+
+        <Route
+          path="/home/login"
+          exact
+          render={props => <Login {...props} />}
+        />
 
         {/* Home Routes */}
         <header className="titleBar">
-          <Route path="/home" render={props => <TitleBar {...props} />} />
+          <Route path="/home" exact render={props => <TitleBar {...props} />} />
         </header>
         <main className="content">
-          <Route path="/home" component={WidgetContainer} />
-          <Route path="/home" render={props => <CardContainer {...props} />} />
+          <Route path="/home" exact component={WidgetContainer} />
+          <Route
+            path="/home"
+            exact
+            render={props => <CardContainer {...props} />}
+          />
         </main>
         {/* Widget Routes */}
         <Route path="/home/widgets" component={ManageWidgets} />

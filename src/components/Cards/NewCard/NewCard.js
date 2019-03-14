@@ -30,7 +30,6 @@ const NewCard = props => {
     let splitCity = city.split(" ").join("+");
     const zillowURL = `&address=${splitAddress}&citystatezip=${splitCity}%2C+${thisState}+${zip}`;
     const url = "../fetchZillow.php";
-    console.log(zillowURL);
     const fetchData = {
       method: "POST",
       body: zillowURL,
@@ -41,7 +40,6 @@ const NewCard = props => {
       .then(res => res.text())
       .then(str => new window.DOMParser().parseFromString(str, "text/xml"))
       .then(xml => {
-        console.log(xml);
         const newREObj = {};
         setBed(xml.getElementsByTagName("bedrooms")[0].textContent);
         setBath(xml.getElementsByTagName("bathrooms")[0].textContent);
@@ -53,7 +51,6 @@ const NewCard = props => {
         setLotSize(xml.getElementsByTagName("lotSizeSqFt")[0].textContent);
         //const oHOA = xml.getElementsByTagName("lastSoldDate")[0]
         setProType(xml.getElementsByTagName("useCode")[0].textContent);
-
         console.log(newREObj);
       });
     /*.then(str => new window.DOMParser().parseFromString(str, "text/xml"))
@@ -85,7 +82,7 @@ const NewCard = props => {
         "vacant land",
         "townhouse",
         "cando/co-op/duplex",
-        "single family residential"
+        "singlefamily"
       ];
       let propNumber = 0;
 
@@ -114,7 +111,7 @@ const NewCard = props => {
       };
       console.log(newProperty);
       //gunu have to also pass it buySell so it know where to put it
-      //props.addRealEstate(newProperty, buySell);
+      props.addRealEstate(newProperty);
     }
   };
 

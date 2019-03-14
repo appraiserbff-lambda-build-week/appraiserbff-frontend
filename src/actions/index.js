@@ -24,6 +24,7 @@ export const UPDATE_PASSWORD = "UPDATE_PASSWORD";
 export const UPDATE_ACCOUNT = "UPDATE_ACCOUNT";
 // Real Estate actions
 export const UPDATING_REAL_ESTATE = "UPDATING_REAL_ESTATE";
+export const GET_REAL_ESTATE = "GET_REAL_ESTATE";
 export const SET_REAL_ESTATE_SORT = "SET_REAL_ESTATE_SORT";
 export const ADD_REAL_ESTATE = "ADD_REAL_ESTATE";
 export const DELETE_REAL_ESTATE = "DELETE_REAL_ESTATE";
@@ -31,20 +32,32 @@ export const DELETE_REAL_ESTATE = "DELETE_REAL_ESTATE";
 export const UPDATING_WIDGETS = "UPDATING_WIDGETS";
 export const SET_WIDGETS = "SET_WIDGETS";
 
-let url = "https://ajbrush.com/home-api/";
+const url = "https://ajbrush.com/home-api";
+
+export const getRealEstate = token => dispatch => {
+  console.log("2", token);
+  axios
+    .post(`${url}/properties`, { token })
+    .then(res => dispatch({ type: GET_REAL_ESTATE, payload: res.data }))
+    .catch(err => console.log(err));
+};
 
 export const logUserIn = ({ username, password }) => dispatch => {
+  console.log("Attempting Login");
   dispatch({ type: LOGGING_IN });
 
   axios
     .post(`${url}/login`, { username, password })
     .then(res => {
       console.log(res.data);
-      localStorage.setItem("token", res.data);
-      dispatch({ type: LOGIN_SUCCESSFUL });
+      localStorage.setItem("token", res.data.token);
+      console.log("1", res.data.token);
+      dispatch({ type: LOGIN_SUCCESSFUL, payload: res.data.user });
+      dispatch(getRealEstate(res.data.token));
     })
     .catch(err => console.log(err));
 };
+
 export const createAccount = (
   { username, organization },
   password
@@ -52,9 +65,10 @@ export const createAccount = (
   dispatch({ type: CREATE_NEW_ACCOUNT });
   axios
     .post(`${url}/register`, { username, password, organization })
-    .then(res => logUserIn(username, password))
+    .then(res => dispatch(logUserIn({ username, password })))
     .catch(err => console.log(err));
 };
+
 export const updateAccount = newSettings => dispatch => {
   console.log(newSettings);
   dispatch({ type: UPDATE_ACCOUNT, payload: newSettings });
@@ -79,11 +93,17 @@ export const setWidgets = widgets => dispatch => {
     .catch(err => console.log(err));
 };
 
-export const addRealEstate = (realEstate, buyOrSell) => dispatch => {
+export const addRealEstate = realEstate => dispatch => {
   dispatch({ type: UPDATING_REAL_ESTATE });
+  const token = localStorage.getItem("token");
   axios
-    .post("", { realEstate, buyOrSell })
-    .then(res => dispatch({ type: ADD_REAL_ESTATE, payload: res.data }))
+    .post(`${url}/properties/add`, { ...realEstate, token })
+    .then(res =>
+      dispatch({
+        type: ADD_REAL_ESTATE,
+        payload: { ...realEstate, id: res.data }
+      })
+    )
     .catch(err => console.log(err));
 };
 

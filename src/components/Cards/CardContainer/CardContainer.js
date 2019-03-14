@@ -63,7 +63,7 @@ const CardContainer = props => {
   console.log(props.realEstate);
   return (
     <div className={styles.cardContainerWrapper}>
-   
+    
    
    
       <div className={styles.flexTop}>

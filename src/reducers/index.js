@@ -11,9 +11,11 @@ import {
   UPDATING_WIDGETS,
   SET_WIDGETS,
   MOCK_DATA_PULL,
-  ADD_REAL_ESTATE_FAIL
+  ADD_REAL_ESTATE_FAIL,
+  REDIRECT_HOME,
+  ROUTE_COMPLETE
 } from "../actions";
- 
+
 const initialState = {
   user: {
     username: "",
@@ -28,7 +30,9 @@ const initialState = {
   udpatingRealEstate: false,
   updatingWidgets: false,
   error: null,
-  addRealEstateFail: false
+  addRealEstateFail: false,
+  addRealEstateSuccess: false,
+  routing: false
 };
 
 export default (state = initialState, action) => {
@@ -97,23 +101,18 @@ export default (state = initialState, action) => {
           ...state.user,
           realEstate: [...state.user.realEstate, action.payload]
         },
-        addRealEstateFail: false
+        addRealEstateFail: false,
+        addRealEstateSuccess: true
       };
 
     // If John returns single id
     //return;
-      case ADD_REAL_ESTATE_FAIL: 
-      return{
+    case ADD_REAL_ESTATE_FAIL:
+      return {
         ...state,
-        addRealEstateFail: true
-      }
-
-
-
-
-
-
-
+        addRealEstateFail: true,
+        addRealEstateSuccess: false
+      };
 
     case SET_REAL_ESTATE_SORT:
       return { ...state, sortBy: action.payload };
@@ -156,6 +155,18 @@ export default (state = initialState, action) => {
         ...state,
         updatingWidgets: false,
         user: { ...state.user, widgets: action.payload }
+      };
+
+    // Send user back Home
+    case REDIRECT_HOME:
+      return {
+        ...state,
+        routing: true
+      };
+    case ROUTE_COMPLETE:
+      return {
+        ...state,
+        routing: false
       };
     default:
       return state;

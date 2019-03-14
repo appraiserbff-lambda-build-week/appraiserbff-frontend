@@ -28,10 +28,12 @@ export const GET_REAL_ESTATE = "GET_REAL_ESTATE";
 export const SET_REAL_ESTATE_SORT = "SET_REAL_ESTATE_SORT";
 export const ADD_REAL_ESTATE = "ADD_REAL_ESTATE";
 export const DELETE_REAL_ESTATE = "DELETE_REAL_ESTATE";
-export const ADD_REAL_ESTATE_FAIL = "ADD_REAL_ESTATE_FAIL"
+export const ADD_REAL_ESTATE_FAIL = "ADD_REAL_ESTATE_FAIL";
 // Widget actions
 export const UPDATING_WIDGETS = "UPDATING_WIDGETS";
 export const SET_WIDGETS = "SET_WIDGETS";
+export const REDIRECT_HOME = "REDIRECT_HOME";
+export const ROUTE_COMPLETE = "ROUTE_COMPLETE";
 
 const url = "https://ajbrush.com/home-api";
 
@@ -90,7 +92,10 @@ export const setWidgets = widgets => dispatch => {
   const token = localStorage.getItem("token");
   axios
     .post(`${url}/user/update-widgets`, { widgets, token })
-    .then(res => dispatch({ type: SET_WIDGETS, payload: widgets }))
+    .then(res => {
+      dispatch({ type: SET_WIDGETS, payload: widgets });
+      dispatch({ type: REDIRECT_HOME });
+    })
     .catch(err => console.log(err));
 };
 
@@ -106,8 +111,7 @@ export const addRealEstate = realEstate => dispatch => {
       });
       dispatch(getRealEstate());
     })
-    .catch(err => console.log(err));
-
+    .catch(err => dispatch({ type: ADD_REAL_ESTATE_FAIL }));
 };
 
 export const setSortBy = sortObj => {
@@ -120,7 +124,7 @@ export const setSortBy = sortObj => {
 export const deleteRealEstate = id => dispatch => {
   dispatch({ type: UPDATING_REAL_ESTATE });
   axios
-    .delete("", id)
+    .delete(`${url}/properties/${id}`, id)
     .then(res => dispatch({ type: DELETE_REAL_ESTATE, payload: id }))
     .catch(err => console.log(err));
 };

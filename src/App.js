@@ -1,7 +1,7 @@
 // Library Imports
 import React, { Component } from "react";
 import { Route } from "react-router-dom";
-import { mockDataPull } from "./actions";
+import { mockDataPull, clearRoute } from "./actions";
 import { connect } from "react-redux";
 import { withRouter, Redirect } from "react-router-dom";
 // Styles
@@ -25,18 +25,25 @@ import Login from "./components/Login/";
 
 class App extends Component {
   componentDidMount() {
-    this.props.mockDataPull();
+    //this.props.mockDataPull();
+    window.addEventListener("beforeunload", localStorage.removeItem("token"));
   }
+  componentDidUnmount() {
+    window.removeEventListener(
+      "beforeunload",
+      localStorage.removeItem("token")
+    );
+    localStorage.removeItem("token");
+  }
+
   render() {
     return (
       <div className="appContainer">
-
-
-        {/* {localStorage.getItem("token") ? (
+        {localStorage.getItem("token") ? (
           <Redirect to="/home/" />
         ) : (
           <Redirect to="/home/login/" />
-        )} */}
+        )}
 
         <Route
           path="/home/login"
@@ -84,7 +91,8 @@ class App extends Component {
 
 const mapStateToProps = state => {
   return {
-    realEstate: state.user.realEstate
+    realEstate: state.user.realEstate,
+    routing: state.routing
   };
 };
 

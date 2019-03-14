@@ -4,6 +4,9 @@ import styles from "./login.module.scss";
 import { logUserIn, createAccount } from "../../actions";
 
 const Login = props => {
+
+  const [loginFailed, setLoginFailed] = useState(false);
+
   //log in
   const [username, setUsername] = useState("");
   const [password, setPassword] = useState("");
@@ -30,6 +33,8 @@ const Login = props => {
 
   return (
     <div className={styles.fullPage}>
+
+
       <form
         className={styles.loginForm}
         style={view ? null : { display: "none" }}
@@ -40,8 +45,13 @@ const Login = props => {
             password: password
           };
           props.logUserIn(credentials);
+          if(!localStorage.getItem("token")){
+            setLoginFailed(!loginFailed);
+          }
         }}
       >
+        {loginFailed ? <p style={{fontSize: "20px", color: "red"}}>Login failed...</p> : null}
+
         <label>Email</label>
 
         <input
@@ -117,4 +127,5 @@ const Login = props => {
 export default connect(
   null,
   { logUserIn, createAccount }
+
 )(Login);

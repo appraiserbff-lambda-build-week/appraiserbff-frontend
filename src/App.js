@@ -1,6 +1,5 @@
 // Library Imports
 import React, { Component } from "react";
-import axios from "axios";
 import { Route } from "react-router-dom";
 import { mockDataPull } from "./actions";
 import { connect } from "react-redux";
@@ -13,7 +12,7 @@ import "./App.scss";
 import TitleBar from "./components/Title/TitleBar";
 import CardContainer from "./components/Cards/CardContainer";
 import WidgetContainer from "./components/Widgets/WidgetContainer";
-import PrivateRoute from "./components/Login/VerifyLogin";
+//import PrivateRoute from "./components/Login/VerifyLogin";
 
 // Widget Imports
 import ManageWidgets from "./components/Widgets/ManageWidgets";

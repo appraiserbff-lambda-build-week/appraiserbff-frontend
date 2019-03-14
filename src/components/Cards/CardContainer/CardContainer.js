@@ -6,7 +6,7 @@ import { connect } from "react-redux";
 import { setUserView } from "../../../actions";
 
 const CardContainer = props => {
-  const [filteredByStatus, setFBS] = useState(1);
+  const [filteredByStatus, setFBS] = useState("1");
 
   // sort array in buy, sell, all
   const realEstateSorter = () => {
@@ -17,18 +17,19 @@ const CardContainer = props => {
         ? [...props.realEstate]
         : props.realEstate.filter(estate => estate.mode === props.userView);
 
-    // if (!property || !order) {
-    //   return sorted;
-    // }
+    if (!property || !order) {
+      return sorted;
+    }
 
     return sorted.sort((a, b) => {
-      if (typeof a[property] === "number") {
+      if (
+        Number(a[property].toString()).toString() === a[property].toString()
+      ) {
         // Sort by number
-
+        const aProp = Number(a[property]);
+        const bProps = Number(b[property]);
         //Sort high-to-low or low-to-high based on input
-        return order === "lowToHigh"
-          ? a[property] - b[property]
-          : b[property] - a[property];
+        return order === "lowToHigh" ? aProp - bProps : bProps - aProp;
       } else if (typeof a[property] === "string") {
         // Sort strings
         const aProp = a[property].toLowerCase();
@@ -44,8 +45,8 @@ const CardContainer = props => {
           return aProp < bProp ? bottom : top;
         }
       }
-      // In case I messed something up and type isn't a string or number,
-      // do nothing
+      console.log("No sort for: ", a[property], b[property]);
+      return 0;
     });
   };
 
@@ -75,11 +76,11 @@ const CardContainer = props => {
 
         <div>
           <p>
-            {filteredByStatus == 1
+            {filteredByStatus === "1"
               ? "all"
-              : filteredByStatus == 2
+              : filteredByStatus === "2"
               ? "buy"
-              : filteredByStatus == 3
+              : filteredByStatus === "3"
               ? "sell"
               : null}
           </p>

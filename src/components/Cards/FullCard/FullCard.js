@@ -18,7 +18,7 @@ const FullCard = props => {
             <i className="fas fa-times" />
           </Link>
           <h2>{props.address}</h2>
-          <img src={props.picture} />
+          <img src={props.picture} alt="Property" />
         </div>
         <hr />
 

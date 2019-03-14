@@ -1,7 +1,7 @@
-import React, { useState, useEffect } from "react";
+import React, { useState } from "react";
 import styles from "./newCard.module.scss";
 import { Link } from "react-router-dom";
-import axios from "axios";
+//import axios from "axios";
 import { connect } from "react-redux";
 import { addRealEstate } from "../../../actions";
 
@@ -26,10 +26,6 @@ const NewCard = props => {
   const [yearAssessed, setYearAssessed] = useState("");
   const [taxes, setTaxes] = useState("");
   const [rooms, setRooms] = useState("");
-
-  const getAge = built => {
-    setProAge(new Date().getFullYear() - built);
-  };
 
   const getInfoFromZillow = () => {
     // I think it can just be .replace(" ", "+")
@@ -297,7 +293,7 @@ const NewCard = props => {
           </div>
 
           <div style={{ display: "flex", alignItems: "center" }}>
-            {sliderPos == 1 ? (
+            {sliderPos === "1" ? (
               <label style={{ fontSize: "26px", color: "red" }}>buy</label>
             ) : (
               <label style={{ fontSize: "26px", color: "green" }}>sell</label>

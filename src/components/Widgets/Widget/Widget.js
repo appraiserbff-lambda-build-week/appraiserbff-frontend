@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React from "react";
 import styles from "./widget.module.scss";
 import widgetData from "./widgetData.js";
 import { connect } from "react-redux";
@@ -49,4 +49,3 @@ export default connect(
   mapStateToProps,
   { setSortBy }
 )(Widget);
-

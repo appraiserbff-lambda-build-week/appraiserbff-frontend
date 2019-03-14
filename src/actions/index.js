@@ -86,9 +86,9 @@ export const setUserView = view => {
 
 export const setWidgets = widgets => dispatch => {
   dispatch({ type: UPDATING_WIDGETS });
-
+  const token = localStorage.getItem("token");
   axios
-    .put(`${url}/user/update-widgets`, widgets)
+    .put(`${url}/user/update-widgets`, { widgets, token })
     .then(res => dispatch({ type: SET_WIDGETS, payload: widgets }))
     .catch(err => console.log(err));
 };

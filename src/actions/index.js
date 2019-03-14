@@ -88,8 +88,8 @@ export const setWidgets = widgets => dispatch => {
   dispatch({ type: UPDATING_WIDGETS });
 
   axios
-    .put("", widgets)
-    .then(res => dispatch({ type: SET_WIDGETS, payload: res.data }))
+    .put(`${url}/user/update-widgets`, widgets)
+    .then(res => dispatch({ type: SET_WIDGETS, payload: widgets }))
     .catch(err => console.log(err));
 };
 

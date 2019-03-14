@@ -25,10 +25,20 @@ const Card = props => {
       <hr />
       <div className={styles.bottom}>
         <p>
-          estimate: <span>${props.item.zestimate}</span>
+          estimate:{" "}
+          <span>
+            {props.item.zestimate
+              ? `$${props.item.zestimate}`
+              : "Calculating..."}
+          </span>
         </p>
         <p>
-          certainty: <span>${props.item.certainty}</span>
+          certainty:{" "}
+          <span>
+            {props.item.certainty
+              ? `$${Math.round(props.item.certainty)}`
+              : "Calculating..."}
+          </span>
         </p>
       </div>
       <hr />

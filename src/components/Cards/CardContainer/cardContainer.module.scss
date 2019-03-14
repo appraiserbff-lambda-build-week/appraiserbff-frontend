@@ -18,13 +18,13 @@
   width: 70%;
   max-width: 1100px;
   @media(max-width: 700px){
-    width: 90%;
+    width: 100%;
   }
   button {
     width: 190px;
     right: 0;
     height: 35px;
-    background: #005703;
+    background: #006402;
     color: white;
     cursor: pointer;
     border-radius: 10px;
@@ -47,6 +47,7 @@
 
     .slider {
       -webkit-appearance: none;
+      border-radius: 5px;
       width: 50px;
       height: 25px;
       background: #d3d3d3;
@@ -55,7 +56,7 @@
       -webkit-transition: .2s;
       transition: opacity .2s;
       @media(max-width: 700px){
-        margin-bottom: 20px;
+        margin-top: 18px;
       }
     }
     
@@ -68,7 +69,8 @@
       appearance: none;
       width: 25px;
       height: 25px;
-      background: rgb(191, 45, 45);
+      border-radius: 5px;;
+      background: #573143;
       cursor: pointer;
     }
     

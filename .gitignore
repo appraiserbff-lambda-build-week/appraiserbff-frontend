@@ -21,3 +21,6 @@
 npm-debug.log*
 yarn-debug.log*
 yarn-error.log*
+
+#no API keys in my my github please
+src/API_TOKEN.php

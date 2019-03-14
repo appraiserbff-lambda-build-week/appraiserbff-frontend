@@ -6,6 +6,7 @@ import { connect } from "react-redux";
 import { addRealEstate } from "../../../actions";
 
 const NewCard = props => {
+
   //info for top form
   const [address, setAddress] = useState("");
   const [city, setCity] = useState("");
@@ -23,6 +24,13 @@ const NewCard = props => {
   const [hoa, setHoa] = useState(0);
   const [proType, setProType] = useState("");
   const [proAge, setProAge] = useState("");
+  const [yearAssessed, setYearAssessed] = useState("");
+  const [taxes, setTaxes] = useState("");
+  const [rooms, setRooms] = useState("");
+
+  const getAge = built => {
+    setProAge(new Date().getFullYear() - built);
+  };
 
   const getInfoFromZillow = () => {
     // I think it can just be .replace(" ", "+")
@@ -40,28 +48,28 @@ const NewCard = props => {
       .then(res => res.text())
       .then(str => new window.DOMParser().parseFromString(str, "text/xml"))
       .then(xml => {
-        const newREObj = {};
-        setBed(xml.getElementsByTagName("bedrooms")[0].textContent);
-        setBath(xml.getElementsByTagName("bathrooms")[0].textContent);
-        setProAge(
-          new Date().getFullYear() -
-            xml.getElementsByTagName("yearBuilt")[0].textContent
-        );
-        setSqFt(xml.getElementsByTagName("finishedSqFt")[0].textContent);
-        setLotSize(xml.getElementsByTagName("lotSizeSqFt")[0].textContent);
-        //const oHOA = xml.getElementsByTagName("lastSoldDate")[0]
-        setProType(xml.getElementsByTagName("useCode")[0].textContent);
-        console.log(newREObj);
-      });
-    /*.then(str => new window.DOMParser().parseFromString(str, "text/xml"))
-      .then(xml => {
-        console.log(xml);
-        this.setState({ xml });*/
+        const dataTypeToHook = {
+          bedrooms: setBed,
+          bathrooms: setBath,
+          yearBuilt: built => {
+            setProAge(new Date().getFullYear() - built);
+          },
+          finishedSqFt: setSqFt,
+          lotSizeSqFt: setLotSize,
+          useCode: setProType,
+          taxAssessmentYear: setYearAssessed,
+          taxAssessment: setTaxes,
+          totalRooms: setRooms
+        };
 
-    // axios
-    //   .post(url, zillowURL)
-    //   .then(res => console.log(res))
-    //   .catch(err => console.log(err));
+        for (let dataType in dataTypeToHook) {
+          if (xml.getElementsByTagName(dataType)[0]) {
+            dataTypeToHook[dataType](
+              xml.getElementsByTagName(dataType)[0].textContent
+            );
+          }
+        }
+      });
   };
 
   const submitForm = () => {
@@ -76,7 +84,9 @@ const NewCard = props => {
       sqFt &&
       lotSize &&
       hoa >= 0 &&
-      proType
+      proType &&
+      yearAssessed &&
+      taxes
     ) {
       const propertyTypes = [
         "vacant land",
@@ -92,7 +102,9 @@ const NewCard = props => {
         }
       });
       const mode = sliderPos === 1 ? "buy" : "sell";
-
+      const totalRooms = rooms.length
+        ? rooms
+        : (Number(bed) + Number(bath)).toString();
       const newProperty = {
         address,
         city,
@@ -107,11 +119,15 @@ const NewCard = props => {
         hoa,
         type: propNumber,
         onMarket: new Date(),
-        mode
+        mode,
+        yearAssessed,
+        rooms: totalRooms,
+        taxes
       };
       console.log(newProperty);
       //gunu have to also pass it buySell so it know where to put it
       props.addRealEstate(newProperty);
+
     }
   };
 
@@ -309,13 +325,22 @@ const NewCard = props => {
           </button>
         </form>
         <hr />
+        {props.addRealEstateFail ? <p style={{fontSize: "20px", color: "red"}}>submit failed...</p> : null}
       </div>
     </div>
   );
 };
 
+
+const mapStateToProps = state => {
+  return{
+    addRealEstateFail: state.addRealEstateFail
+  }
+}
+
+
 export default connect(
-  null,
+  mapStateToProps,
   { addRealEstate }
 )(NewCard);
 

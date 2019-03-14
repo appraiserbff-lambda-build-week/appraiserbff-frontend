@@ -11,9 +11,10 @@ import {
   DELETE_REAL_ESTATE,
   UPDATING_WIDGETS,
   SET_WIDGETS,
-  MOCK_DATA_PULL
+  MOCK_DATA_PULL,
+  ADD_REAL_ESTATE_FAIL
 } from "../actions";
-
+ 
 const initialState = {
   user: {
     username: "",
@@ -21,13 +22,14 @@ const initialState = {
     realEstate: [],
     widgets: []
   },
-  userView: "sell",
+  userView: "all",
   sortBy: { property: "zestimate", order: "highToLow" },
   loggingIn: false,
   updatingAccount: false,
   udpatingRealEstate: false,
   updatingWidgets: false,
-  error: null
+  error: null,
+  addRealEstateFail: false
 };
 
 export default (state = initialState, action) => {
@@ -95,11 +97,24 @@ export default (state = initialState, action) => {
         user: {
           ...state.user,
           realEstate: [...state.user.realEstate, action.payload]
-        }
+        },
+        addRealEstateFail: false
       };
 
     // If John returns single id
     //return;
+      case ADD_REAL_ESTATE_FAIL: 
+      return{
+        ...state,
+        addRealEstateFail: true
+      }
+
+
+
+
+
+
+
 
     case SET_REAL_ESTATE_SORT:
       return { ...state, sortBy: action.payload };

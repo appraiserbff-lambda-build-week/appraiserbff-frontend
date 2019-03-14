@@ -10,10 +10,12 @@
     position: absolute;
     top: 0;
     left: 15vw;
-    width: 800px;
+    width: 70%;
+    max-width: 800px;
     padding: 20px 10px;
     background: white;
     margin: 10vh auto;
+    font-family: 'Muli', sans-serif;
   }
   .cardSettingsTop {
     display: flex;
@@ -78,6 +80,7 @@
     opacity: 0.7;
     -webkit-transition: .2s;
     transition: opacity .2s;
+    border-radius: 10px;
   }
   
   .slider:hover {
@@ -89,13 +92,14 @@
     appearance: none;
     width: 50%;
     height: 25px;
-    background: rgb(189, 40, 40);
+    background: #573143;
+    border-radius: 10px;
     cursor: pointer;
   }
   
   .slider::-moz-range-thumb {
     width: 50%;
     height: 25px;
-    background: rgb(189, 40, 40);
+    background: #573143;
     cursor: pointer;
   }

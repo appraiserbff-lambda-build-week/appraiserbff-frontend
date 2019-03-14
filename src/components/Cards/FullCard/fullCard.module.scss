@@ -1,6 +1,6 @@
 .cardSettings {
     width: 100vw;
-    height: 140vh;
+    height: 160vh;
     background: rgba(0, 0, 0, 0.8);
     position: absolute;
     top: 0;
@@ -8,13 +8,14 @@
   
   .cardSettingsModal {
     font-family: 'Muli', sans-serif;
-    width: 800px;
+    width: 70%;
+    max-width: 800px;
     padding: 20px 10px;
     background: white;
     margin: 10vh auto;
     position: absolute;
     top: 0;
-    left: 20vw;
+    left: 15vw;
   }
 
   .cardSettingsTop {
@@ -46,6 +47,9 @@
   span{
     font-size: 38px;
     color: green;
+    @media(max-width: 700px){
+      font-size: 32px;
+    }
   }
 }
 

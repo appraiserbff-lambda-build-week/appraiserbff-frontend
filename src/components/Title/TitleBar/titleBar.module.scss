@@ -12,6 +12,7 @@
     h2 {
       color: rgba(255, 255, 255, 0.479);
       font-size: 30px;
+      margin-left: 20px;
     }
   }
   
@@ -28,6 +29,9 @@
       color: white;
       margin-right: 50px;
       font-size: 30px;
+      @media(max-width: 700px){
+        display: none;
+      }
     }
     div {
       width: 45px;

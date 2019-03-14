@@ -63,8 +63,13 @@ const CardContainer = props => {
   console.log(props.realEstate);
   return (
     <div className={styles.cardContainerWrapper}>
+   
+   
+   
       <div className={styles.flexTop}>
-        <div>
+    
+    
+        <div className={styles.filterResults}>
           <label>filter results:</label>
           <input
             value={filterBySearch}
@@ -74,16 +79,6 @@ const CardContainer = props => {
         </div>
 
         <div>
-          <p>
-            {filteredByStatus == 1
-              ? "all"
-              : filteredByStatus == 2
-              ? "buy"
-              : filteredByStatus == 3
-              ? "sell"
-              : null}
-          </p>
-
           <input
             type="range"
             min="1"
@@ -112,7 +107,13 @@ const CardContainer = props => {
           <button>New Estimate</button>
         </Link>
       </div>
+     
       <div className={styles.cardContainer}>
+        {localRealEstate.length === 0 ? <p>add some properties to get started!</p> 
+        : localRealEstate.filter(item => item.address.toLowerCase().includes(filterBySearch.toLocaleLowerCase())).map(item => (
+          <Card mode={item.mode} key={item.id} item={item} />
+        ))}
+
         {localRealEstate
           .filter(item => item.address.includes(filterBySearch))
           .map(item => (

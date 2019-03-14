@@ -65,7 +65,7 @@ const CardContainer = props => {
   return (
     <div className={styles.cardContainerWrapper}>
       <div className={styles.flexTop}>
-        <div>
+        <div className={styles.filterResults}>
           <label>filter results:</label>
           <input
             value={filterBySearch}
@@ -75,15 +75,6 @@ const CardContainer = props => {
         </div>
 
         <div>
-          <p>
-            {filteredByStatus === "1"
-              ? "all"
-              : filteredByStatus === "2"
-              ? "buy"
-              : filteredByStatus === "3"
-              ? "sell"
-              : null}
-          </p>
 
           <input
             type="range"

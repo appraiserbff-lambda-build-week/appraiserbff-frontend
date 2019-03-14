@@ -1,5 +1,5 @@
 .cardContainer {
-  font-family: "Muli", sans-serif;
+  font-family: 'Muli', sans-serif;
   margin: auto;
   width: 100%;
   max-width: 1100px;
@@ -15,10 +15,21 @@
 
 .cardContainerWrapper {
   margin-top: 10px;
-  width: 70%;
+  width: 900px;
+  margin-left: 20px;
   max-width: 1100px;
-  @media (max-width: 700px) {
+  @media(max-width: 1200px){
+    width: 600px;
+  }
+  @media(max-width: 900px){
+    width: 500px;
+  }
+  @media(max-width: 800px){
+    width: 400px;
+  }
+  @media(max-width: 700px){
     width: 100%;
+    margin-left: 0;
   }
   button {
     width: 190px;
@@ -36,13 +47,13 @@
     display: flex;
     justify-content: space-between;
     align-items: center;
-    @media (max-width: 700px) {
+    @media(max-width: 700px){
       flex-direction: column;
       flex-direction: column-reverse;
     }
     p {
       margin-left: 10px;
-      margin-top: 20px;
+      margin-top: 20px
     }
 
     .slider {
@@ -53,27 +64,27 @@
       background: #d3d3d3;
       outline: none;
       opacity: 0.7;
-      -webkit-transition: 0.2s;
-      transition: opacity 0.2s;
-      @media (max-width: 700px) {
+      -webkit-transition: .2s;
+      transition: opacity .2s;
+      @media(max-width: 700px){
         margin-top: 18px;
       }
     }
-
+    
     .slider:hover {
       opacity: 1;
     }
-
+    
     .slider::-webkit-slider-thumb {
       -webkit-appearance: none;
       appearance: none;
       width: 25px;
       height: 25px;
-      border-radius: 5px;
+      border-radius: 5px;;
       background: #573143;
       cursor: pointer;
     }
-
+    
     .slider::-moz-range-thumb {
       width: 25px;
       height: 25px;
@@ -83,8 +94,8 @@
   }
 }
 
-.filterResults {
-  @media (max-width: 700px) {
+.filterResults{
+  @media(max-width: 820px){
     display: none;
   }
 }

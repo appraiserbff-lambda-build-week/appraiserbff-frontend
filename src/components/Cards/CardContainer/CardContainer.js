@@ -64,7 +64,7 @@ const CardContainer = props => {
   return (
     <div className={styles.cardContainerWrapper}>
       <div className={styles.flexTop}>
-        <div>
+        <div className={styles.filterResults}>
           <label>filter results:</label>
           <input 
           value={filterBySearch}
@@ -112,7 +112,7 @@ const CardContainer = props => {
         </Link>
       </div>
       <div className={styles.cardContainer}>
-        {localRealEstate.filter(item => item.address.includes(filterBySearch)).map(item => (
+        {localRealEstate.filter(item => item.address.toLowerCase().includes(filterBySearch.toLocaleLowerCase())).map(item => (
           <Card mode={item.mode} key={item.id} item={item} />
         ))}
 

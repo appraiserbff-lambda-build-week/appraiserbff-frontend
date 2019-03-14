@@ -25,7 +25,7 @@ const NewCard = props => {
 
     const [sliderPos, setSliderPos] = useState(1);
 
-    
+     
     
     const getInfoFromZillow = () => {
         console.log("working");
@@ -140,6 +140,7 @@ const NewCard = props => {
                 <hr />
 
                 <form className={styles.formTwo}>
+                    
                     <div>
                         <label>bed:</label>
                         <input 
@@ -234,7 +235,7 @@ const NewCard = props => {
                     <div>
                         <label>property type:</label>
                         <input 
-                        type="text" 
+                        type="number" 
                         style={{marginLeft: "12px"}}
                         value={proType}
                         onChange={e => {
@@ -257,6 +258,7 @@ const NewCard = props => {
                         />
                     </div>
 
+
                     <div style={{display: "flex", alignItems: "center"}}>
                         {sliderPos == 1 ? <label style={{fontSize: "26px", color: "red"}}>buy</label> : <label style={{fontSize: "26px", color: "green"}}>sell</label>}
                         <input 
@@ -269,11 +271,6 @@ const NewCard = props => {
                         onChange={e => setSliderPos(e.target.value)}
                         />
                     </div>
-
-
-
-
-
 
                     <button 
                     onClick={e => {

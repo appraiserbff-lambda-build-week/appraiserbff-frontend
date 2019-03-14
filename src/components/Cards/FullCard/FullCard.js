@@ -5,7 +5,6 @@ import { Link } from 'react-router-dom'
 
 import { connect } from 'react-redux'
 
-import { deleteRealEstate } from '../../../actions'
 import { deleteRealEstate } from "../../../actions";
 
  
@@ -46,7 +45,8 @@ const FullCard = props => {
                 >delete</button>
             </div>
         </div>
-
+    );
+};
 
 export default connect(null, {deleteRealEstate})(FullCard)
 

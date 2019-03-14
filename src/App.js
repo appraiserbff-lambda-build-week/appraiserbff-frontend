@@ -36,35 +36,27 @@ class App extends Component {
         ) : (
           <Redirect to="/home/login/" />
         )}
-
         <Route
           path="/home/login"
           exact
           render={props => <Login {...props} />}
         />
-
         {/* Home Routes */}
         <header className="titleBar">
-          <Route path="/home" exact render={props => <TitleBar {...props} />} />
+          <Route path="/home" render={props => <TitleBar {...props} />} />
         </header>
         <main className="content">
-          <Route path="/home" exact component={WidgetContainer} />
-          <Route
-            path="/home"
-            exact
-            render={props => <CardContainer {...props} />}
-          />
+          <Route path="/home" component={WidgetContainer} />
+          <Route path="/home" render={props => <CardContainer {...props} />} />
         </main>
         {/* Widget Routes */}
         <Route path="/home/widgets" component={ManageWidgets} />
-
         {/* Card Routes*/}
         <Route
           path="/home/account_settings"
           exact
           render={props => <AccountSettings {...props} />}
         />
-
         <Route
           path="/home/card/:id"
           exact
@@ -82,7 +74,6 @@ class App extends Component {
           exact
           render={props => <NewCard {...props} />}
         />
-
         {/* <PrivateRoute /> redirects to whatever component is passed to it if local storage has an auth toekn, else redirects to login */}
       </div>
     );

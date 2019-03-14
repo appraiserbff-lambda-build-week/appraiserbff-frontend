@@ -21,7 +21,7 @@ const initialState = {
     realEstate: [],
     widgets: []
   },
-  userView: "sell",
+  userView: "all",
   sortBy: { property: "zestimate", order: "highToLow" },
   loggingIn: false,
   updatingAccount: false,

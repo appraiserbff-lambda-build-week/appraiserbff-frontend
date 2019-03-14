@@ -1,101 +1,126 @@
+$green: #005703;
+$lightgreen: #008104;
 .newCard {
-    width: 100vw;
-    height: 120vh;
-    background: rgba(0, 0, 0, 0.8);
-    position: absolute;
-    top: 0;
+  width: 100vw;
+  height: 120vh;
+  background: rgba(0, 0, 0, 0.8);
+  position: absolute;
+  top: 0;
+}
+.newCardModal {
+  position: absolute;
+  top: 0;
+  left: 15vw;
+  width: 800px;
+  padding: 20px 10px;
+  background: white;
+  margin: 10vh auto;
+}
+.cardSettingsTop {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 0 20px;
+  h2 {
+    margin: 10px 0;
+    font-size: 35px;
+    text-shadow: 1px 1px 2px;
   }
-  
-  .newCardModal {
-    position: absolute;
-    top: 0;
-    left: 15vw;
-    width: 800px;
-    padding: 20px 10px;
-    background: white;
-    margin: 10vh auto;
+  a {
+    font-size: 1.5rem;
+    color: black;
+    transition: 0.2s ease-out 0s;
+    &:hover {
+      font-size: 2rem;
+    }
   }
-  .cardSettingsTop {
+}
+.formOne {
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  margin-top: 15px;
+  input {
+    margin: 10px 12px;
+    width: 125px;
+  }
+  button {
+    width: 120px;
+    height: 35px;
+    background: $green;
+    color: white;
+    cursor: pointer;
+    border-radius: 10px;
+    font-size: 14px;
+    border: 1px solid black;
+    text-transform: capitalize;
+    margin: 15px auto;
+    transition: font-size 0.5s ease-out 0s;
+    &:hover {
+      background: linear-gradient($lightgreen, $green);
+      font-size: 1.1rem;
+    }
+  }
+}
+.formTwo {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  padding-left: 20px;
+  flex-wrap: wrap;
+  div {
+    text-transform: capitalize;
+    width: 50%;
     display: flex;
-    justify-content: space-between;
+    justify-content: space-evenly;
     align-items: center;
-    padding: 0 20px;
-    h2 {
+    input {
+      width: 150px;
+      height: 24px;
       margin: 10px 0;
-      font-size: 35px;
     }
   }
-
-  .formOne{
-    display: flex;
-    flex-direction: row;   
-    flex-wrap: wrap;
-    input{
-        margin: 10px 12px;
-        width: 125px;
-    }
-    button {
-        width: 120px;
-        height: 35px;
-        background: black;
-        color: white;
-        cursor: pointer;
-        border-radius: 10px;
-        font-size: 14px;
-      }
-  }
-
-  .formTwo{
-    display: flex;
-    flex-direction: column;   
-    align-items: flex-start;
-    padding-left: 20px;
-    flex-wrap: wrap;
-    input{
-        margin: 10px 12px;
-        width: 125px;
-    }
-    button {
-        width: 190px;
-        height: 35px;
-        background: #015703;
-        color: white;
-        cursor: pointer;
-        border-radius: 10px;
-        font-size: 16px;
-      }
-  }
-
-  
-
-  
-  .slider {
-    -webkit-appearance: none;
-    width: 50px;
-    height: 25px;
-    background: #d3d3d3;
-    outline: none;
-    opacity: 0.7;
-    -webkit-transition: .2s;
-    transition: opacity .2s;
-  }
-  
-  .slider:hover {
-    opacity: 1;
-  }
-  
-  .slider::-webkit-slider-thumb {
-    -webkit-appearance: none;
-    appearance: none;
-    width: 50%;
-    height: 25px;
-    background: rgb(189, 40, 40);
+  button {
+    width: 190px;
+    height: 35px;
+    background: $green;
+    color: white;
     cursor: pointer;
+    border-radius: 10px;
+    font-size: 16px;
+    border: 1px solid black;
+    margin: 20px auto;
+    transition: font-size 0.5s ease-out 0s;
+    &:hover {
+      background: linear-gradient($lightgreen, $green);
+      font-size: 1.2rem;
+    }
   }
-  
-  .slider::-moz-range-thumb {
-    width: 50%;
-    height: 25px;
-    background: rgb(189, 40, 40);
-    cursor: pointer;
-  }
+}
+.slider {
+  -webkit-appearance: none;
+  width: 50px;
+  height: 25px;
+  background: #d3d3d3;
+  outline: none;
+  opacity: 0.7;
+  -webkit-transition: 0.2s;
+  transition: opacity 0.2s;
+}
+.slider:hover {
+  opacity: 1;
+}
+.slider::-webkit-slider-thumb {
+  -webkit-appearance: none;
+  appearance: none;
+  width: 50%;
+  height: 25px;
+  background: rgb(189, 40, 40);
+  cursor: grab;
+}
+.slider::-moz-range-thumb {
+  width: 50%;
+  height: 25px;
+  background: rgb(189, 40, 40);
+  cursor: grab;
+}

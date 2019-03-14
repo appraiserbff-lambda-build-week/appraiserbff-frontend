@@ -1,7 +1,7 @@
+$white: #e9e9e9;
 $height: 40px;
 $darkRed: #bf2d2d;
 $lightRed: #d26c6c;
-
 .manageWidgets {
   width: 100vw;
   height: 100vh;
@@ -13,7 +13,7 @@ form.dialog {
   width: 80%;
   max-width: 500px;
   padding: 20px 10px;
-  background: white;
+  background: $white;
   position: absolute;
   left: 0;
   right: 0;
@@ -22,31 +22,54 @@ form.dialog {
   display: flex;
   flex-direction: column;
   justify-content: space-between;
-
   main {
     display: flex;
     justify-content: space-between;
+    padding: 5px 0 0;
+    section {
+      h2 {
+        padding-bottom: 5px;
+        text-decoration: underline;
+        text-align: center;
+        font-weight: bold;
+      }
+      div {
+        margin-top: 20px;
+        &.widget {
+          margin-top: 0px;
+        }
+      }
+      a {
+        transition: font-size 0.3s ease-out 0s;
+        text-decoration: none;
+        font-weight: bold;
+        position: relative;
+        top: -20px;
+        &:hover {
+          font-size: 1.2rem;
+        }
+      }
+    }
   }
-
   footer {
     text-align: center;
     button {
       margin-top: 20px;
       width: 200px;
       height: 30px;
-      transition: 0.2s;
-
+      border-radius: 5px;
+      transition: 0.2s ease-out 0s;
       &:focus {
-        outline: 5px solid white;
+        outline: 5px solid $white;
       }
-
       &.save {
         background-color: #ec5252;
         border: 1px solid #ec5252;
-        color: #fff;
+        color: $white;
         &:hover {
           background-color: #992337;
           border: 1px solid #992337;
+          cursor: pointer;
         }
         &:active {
           background-color: #521822;
@@ -60,34 +83,29 @@ form.dialog {
     }
   }
 }
-
 .sortWidgets {
   border: 1px solid black;
   width: 30%;
-  min-width: 150px;
+  min-width: 160px;
 }
-
 .widget {
   display: flex;
   justify-content: space-between;
   align-items: center;
   width: 100%;
-  min-width: 150px;
+  min-width: 160px;
   min-height: $height;
-
   &:nth-child(even) {
     background-color: rgb(194, 194, 194);
   }
   &:nth-child(odd) {
     background-color: rgb(250, 250, 250);
   }
-
   p {
     margin-left: 4%;
     text-decoration: none;
   }
 }
-
 .arrows {
   display: flex;
   flex-direction: column;
@@ -103,7 +121,6 @@ form.dialog {
     cursor: default;
   }
 }
-
 .link {
   cursor: default;
   color: #000;

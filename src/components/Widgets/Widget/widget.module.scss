@@ -3,13 +3,11 @@ $darkGrey: #7d7b7b;
 $grey: #9ea3a4;
 $lightGrey: #e9e9e9;
 $red: #bf6363;
-
 .widget {
   display: flex;
   justify-content: space-between;
   width: 100%;
-  font-family: 'Muli', sans-serif;
-
+  font-family: "Muli", sans-serif;
   &:nth-child(even) {
     background-color: rgb(194, 194, 194);
   }
@@ -43,6 +41,10 @@ $red: #bf6363;
       font-size: 1.5rem;
       margin-right: 20px;
       margin: 7px 3px;
+      transition: 0.2s ease-out 0s;
+      &:hover {
+        font-size: 1.3rem;
+      }
     }
     i.down {
       transform: scaleY(-1);

@@ -14,6 +14,7 @@
         "age": 23,
         "picture": "https://i.imgur.com/ufZjaLz.jpg",
         "zestimate": 780000,
+        "certainty": 10000,
         "sqFt": 2000,
         "lotSize": 3000,
         "hoa": 50,

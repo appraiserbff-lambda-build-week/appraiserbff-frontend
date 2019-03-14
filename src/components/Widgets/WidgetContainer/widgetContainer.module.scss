@@ -4,33 +4,35 @@
   min-width: 220px;
   margin-right: 5px;
   border: 1px solid black;
-  font-family: 'Muli', sans-serif;
+  font-family: "Muli", sans-serif;
   display: flex;
   flex-direction: column;
   align-items: flex-end;
-
-  // @media(max-width: 700px){
-  //   display: none;
-  // }
+   border-radius: 5px 5px 0 0;
+  @media(max-width: 700px){
+    display: none;
+  }
 }
-
 .widgetTitle {
   width: 100%;
   display: flex;
   justify-content: center;
   align-items: center;
   border-bottom: 1px solid black;
-
   h2 {
     font-size: 1.5rem;
-    text-align: center;
-    //text-decoration: underline;
+    text-align: center; //text-decoration: underline;
     border-bottom: 2px solid black;
     margin: 5px 0;
   }
-
   i {
     color: #000;
     cursor: pointer;
+    margin-left: 10px;
+    transition: 0.3s ease-out 0s;
+    &:hover {
+      font-size: 1.5rem;
+      margin-left: 0px;
+    }
   }
 }

@@ -6,6 +6,7 @@ import { connect } from "react-redux";
 import { addRealEstate } from "../../../actions";
 
 const NewCard = props => {
+
   //info for top form
   const [address, setAddress] = useState("");
   const [city, setCity] = useState("");
@@ -122,6 +123,7 @@ const NewCard = props => {
       console.log(newProperty);
       //gunu have to also pass it buySell so it know where to put it
       props.addRealEstate(newProperty);
+
     }
   };
 
@@ -319,44 +321,21 @@ const NewCard = props => {
           </button>
         </form>
         <hr />
+        {props.addRealEstateFail ? <p style={{fontSize: "20px", color: "red"}}>submit failed...</p> : null}
       </div>
     </div>
   );
 };
 
+
+const mapStateToProps = state => {
+  return{
+    addRealEstateFail: state.addRealEstateFail
+  }
+}
+
+
 export default connect(
-  null,
+  mapStateToProps,
   { addRealEstate }
 )(NewCard);
-
-/*
-Stuff AJ removed:
-
-<div>
-  <label>$/sq foot:</label>
-  <input
-    type="number"
-    style={{ marginLeft: "44px" }}
-    value={perSqFt}
-    onChange={e => {
-      e.preventDefault();
-      setPerSqFt(e.target.value);
-    }}
-  />
-</div>
-
-<div>
-  <label>year built:</label>
-  <input
-    type="number"
-    style={{ marginLeft: "40px" }}
-    value={yearBuilt}
-    onChange={e => {
-      e.preventDefault();
-      setYearBuilt(e.target.value);
-    }}
-  />
-</div>
-
-
-*/

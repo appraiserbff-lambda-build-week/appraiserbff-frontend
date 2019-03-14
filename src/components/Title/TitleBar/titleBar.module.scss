@@ -12,9 +12,10 @@ $lightgreen: #008104;
   margin: 0 auto;
   font-family: "Muli", sans-serif;
   h2 {
-    color: $white;
+    color: rgba(255, 255, 255, 0.479);
     font-size: 30px;
     text-shadow: $white 1px 1px 5px;
+    margin-left: 20px;
   }
 }
 .user {

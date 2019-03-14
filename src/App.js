@@ -25,16 +25,19 @@ import Login from "./components/Login/";
 
 class App extends Component {
   componentDidMount() {
-    //this.props.mockDataPull();
+    this.props.mockDataPull();
   }
   render() {
     return (
       <div className="appContainer">
-        {localStorage.getItem("token") ? (
+
+
+        {/* {localStorage.getItem("token") ? (
           <Redirect to="/home/" />
         ) : (
           <Redirect to="/home/login/" />
-        )}
+        )} */}
+
         <Route
           path="/home/login"
           exact

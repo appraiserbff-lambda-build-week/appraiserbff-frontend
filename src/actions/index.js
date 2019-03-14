@@ -28,6 +28,7 @@ export const GET_REAL_ESTATE = "GET_REAL_ESTATE";
 export const SET_REAL_ESTATE_SORT = "SET_REAL_ESTATE_SORT";
 export const ADD_REAL_ESTATE = "ADD_REAL_ESTATE";
 export const DELETE_REAL_ESTATE = "DELETE_REAL_ESTATE";
+export const ADD_REAL_ESTATE_FAIL = "ADD_REAL_ESTATE_FAIL"
 // Widget actions
 export const UPDATING_WIDGETS = "UPDATING_WIDGETS";
 export const SET_WIDGETS = "SET_WIDGETS";
@@ -106,6 +107,7 @@ export const addRealEstate = realEstate => dispatch => {
       dispatch(getRealEstate());
     })
     .catch(err => console.log(err));
+
 };
 
 export const setSortBy = sortObj => {

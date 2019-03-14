@@ -121,7 +121,10 @@ function ManageWidgets(props) {
           </section>
         </main>
         <footer>
-          <button className={styles.save} type="submit">
+          <button
+            className={props.updatingWidgets ? styles.loading : styles.save}
+            type="submit"
+          >
             {props.updatingWidgets ? (
               <i className="fas fa-spinner fa-spin" />
             ) : (

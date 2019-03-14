@@ -31,7 +31,7 @@ class App extends Component {
   render() {
     return (
       <div className="appContainer">
-        <Route path="/Login" render={props => <Login {...props} />} />
+        <Route path="/home/login" render={props => <Login {...props} />} />
 
         {/* Home Routes */}
         <header className="titleBar">

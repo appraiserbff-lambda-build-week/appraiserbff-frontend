@@ -30,7 +30,6 @@ const initialState = {
 };
 
 export default (state = initialState, action) => {
-  console.log("FOUND ACTION: ", action.type);
   switch (action.type) {
     case MOCK_DATA_PULL:
       console.log(action.payload.user);
@@ -43,7 +42,7 @@ export default (state = initialState, action) => {
     case LOGGING_IN:
       return { ...state, loggingIn: true };
     case LOGIN_SUCCESSFUL:
-      return { ...state, loggingIn: false, error: null, user: action.payload };
+      return { ...state, loggingIn: false, error: null };
     case LOGIN_ERROR:
       return { ...state, loggingIn: false, error: action.payload };
 

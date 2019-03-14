@@ -31,33 +31,43 @@ export const DELETE_REAL_ESTATE = "DELETE_REAL_ESTATE";
 export const UPDATING_WIDGETS = "UPDATING_WIDGETS";
 export const SET_WIDGETS = "SET_WIDGETS";
 
-export const logUserIn = () => dispatch => {
+let url = "https://ajbrush.com/home-api/";
+
+export const logUserIn = ({ username, password }) => dispatch => {
   dispatch({ type: LOGGING_IN });
 
-  // authentication request
+  axios
+    .post(`${url}/login`, { username, password })
+    .then(res => {
+      console.log(res.data);
+      localStorage.setItem("token", res.data);
+      dispatch({ type: LOGIN_SUCCESSFUL });
+    })
+    .catch(err => console.log(err));
 };
+export const createAccount = (
+  { username, organization },
+  password
+) => dispatch => {
+  dispatch({ type: CREATE_NEW_ACCOUNT });
+  axios
+    .post(`${url}/register`, { username, password, organization })
+    .then(res => logUserIn(username, password))
+    .catch(err => console.log(err));
+};
+export const updateAccount = newSettings => dispatch => {
+  console.log(newSettings);
+  dispatch({ type: UPDATE_ACCOUNT, payload: newSettings });
+
+  // axios put for username/password
+};
+
 export const setUserView = view => {
   // Receive view, update store
   return {
     type: SET_USER_VIEW,
     payload: view
   };
-};
-// export const updateUsername = username => dispatch => {
-//   dispatch({ TYPE: UPDATE_USERNAME });
-
-//   // axios put for username
-// };
-// export const updatePassword = () => dispatch => {
-//   dispatch({ TYPE: UPDATE_PASSWORD });
-
-//   // axios put for password
-// };
-export const updateAccount = newSettings => dispatch => {
-  console.log(newSettings);
-  dispatch({ type: UPDATE_ACCOUNT, payload: newSettings });
-
-  // axios put for username/password
 };
 
 export const setWidgets = widgets => dispatch => {
@@ -89,15 +99,5 @@ export const deleteRealEstate = id => dispatch => {
   axios
     .delete("", id)
     .then(res => dispatch({ type: DELETE_REAL_ESTATE, payload: id }))
-    .catch(err => console.log(err));
-};
-
-export const createAccount = (newAcc, newPassword) => dispatch => {
-  console.log(newAcc);
-  console.log(newPassword);
-  dispatch({ type: CREATE_NEW_ACCOUNT });
-  axios
-    .post("")
-    .then(res => console.log(res))
     .catch(err => console.log(err));
 };

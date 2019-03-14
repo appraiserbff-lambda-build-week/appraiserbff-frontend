@@ -30,16 +30,32 @@ form.dialog {
 
   footer {
     text-align: center;
-    button.save {
+    button {
       margin-top: 20px;
       width: 200px;
       height: 30px;
-      background-color: lighten($lightRed, 10%);
       transition: 0.2s;
-      border: 1px solid #000;
-      &:hover {
-        background-color: lighten($lightRed, 25%);
-        //color: #fff;
+
+      &:focus {
+        outline: 5px solid white;
+      }
+
+      &.save {
+        background-color: #ec5252;
+        border: 1px solid #ec5252;
+        color: #fff;
+        &:hover {
+          background-color: #992337;
+          border: 1px solid #992337;
+        }
+        &:active {
+          background-color: #521822;
+          border: 1px solid #521822;
+        }
+      } // .save
+      &.loading {
+        background-color: lightgrey;
+        border: 1px solid black;
       }
     }
   }

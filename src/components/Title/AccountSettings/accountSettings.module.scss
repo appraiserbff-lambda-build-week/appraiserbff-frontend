@@ -1,52 +1,71 @@
+$green: #005703;
+$lightgreen: #008104;
 .accountSettings {
-    width: 100vw;
-    height: 120vh;
-    background: rgba(0, 0, 0, 0.8);
-    position: absolute;
-    top: 0;
-  }
-    
-  .accountSettingsModal {
-    font-family: 'Muli', sans-serif;
-    width: 70%;
-    padding: 20px 10px;
-    background: white;
-    margin: auto;
-    position: absolute;
-    top: 10vh;
-    left: 15%;
-    form {
-      margin-left: 15px;
+  width: 100vw;
+  height: 120vh;
+  background: rgba(0, 0, 0, 0.8);
+  position: absolute;
+  top: 0;
+}
+.accountSettingsModal {
+  font-family: "Muli", sans-serif;
+  width: 70%;
+  padding: 20px 10px;
+  background: white;
+  margin: 15vh auto;
+  position: absolute;
+  top: 10vh;
+  left: 20vw;
+  form {
+    padding-left: 15px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: flex-start;
+    div {
+      width: 50%;
       display: flex;
-      flex-direction: column;
-      justify-content: center;
-      align-items: flex-start;
+      justify-content: space-evenly;
+      align-items: center;
       input {
         width: 150px;
         height: 24px;
         margin: 10px 0;
       }
-  
-      button {
-        width: 190px;
-        height: 35px;
-        background: #005703;
-        color: white;
-        cursor: pointer;
-        margin-top: 40px;
-        border-radius: 10px;
+    }
+    button {
+      width: 190px;
+      height: 35px;
+      background: $green;
+      color: white;
+      cursor: pointer;
+      margin: 15px auto;
+      border: 1px solid black;
+      transition: font-size 0.2s ease-out;
+      border-radius: 10px;
+      &:hover {
+        background: linear-gradient($lightgreen, $green);
+        font-size: 1.2rem;
       }
     }
   }
-  
-  .accSettingsTop {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    padding: 0 20px;
-    h2 {
-      margin: 10px 0;
-      font-size: 35px;
+}
+.accSettingsTop {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 0 20px;
+  h2 {
+    margin: 10px 0;
+    font-size: 35px;
+    text-shadow: 1px 1px 2px;
+  }
+  a {
+    font-size: 1.5rem;
+    color: black;
+    transition: 0.2s ease-out 0s;
+    &:hover {
+      font-size: 2rem;
     }
   }
-  
+}

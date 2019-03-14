@@ -41,7 +41,7 @@ function ManageWidgets(props) {
   // Users widgets, in order
   const getUserWidgetList = () => {
     return localWidgets.map((name, index) => {
-      const { display } = widgetData[name]();
+      const { header } = widgetData[name]();
       let up, down;
       if (index > 0) {
         up = (
@@ -65,7 +65,7 @@ function ManageWidgets(props) {
       }
       return (
         <div key={name} className={styles.widget}>
-          <p>{display}</p>
+          <p>{header}</p>
           <div className={styles.arrows}>
             {up}
             {down}
@@ -78,7 +78,7 @@ function ManageWidgets(props) {
   // Get all widgets available
   const getWidgetChecklist = () => {
     return Object.keys(widgetData).map(widget => {
-      const { display } = widgetData[widget]();
+      const { header } = widgetData[widget]();
       let checked = localWidgets.includes(widget) ? true : false;
 
       return (
@@ -88,7 +88,7 @@ function ManageWidgets(props) {
             onChange={() => changeWidgets(widget)}
             checked={checked}
           />{" "}
-          {display}
+          {header}
         </div>
       );
     });

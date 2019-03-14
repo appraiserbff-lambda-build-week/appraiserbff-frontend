@@ -2,10 +2,17 @@ import wMath from "./widgetMath.js";
 
 function timeOnMarket(realEstate) {
   return {
-    header: "Average Time On Market",
+    header: "Average Market Age",
     data: () => wMath.averageOnMarket(realEstate),
-    estateProp: "onMarket",
-    display: "Time On Market"
+    estateProp: "onMarket"
+  };
+}
+
+function ageOfHouse(realEstate) {
+  return {
+    header: "Average Building Age",
+    data: () => wMath.average(realEstate, "age"),
+    estateProp: "age"
   };
 }
 
@@ -13,9 +20,51 @@ function averageZestimate(realEstate) {
   return {
     header: "Average Estimate",
     data: () => wMath.average(realEstate, "zestimate"),
-    estateProp: "zestimate",
-    display: "Average Estimate"
+    estateProp: "zestimate"
   };
 }
 
-export default { timeOnMarket, averageZestimate };
+function totalValue(realEstate) {
+  return {
+    header: "Total Value",
+    data: () => wMath.getSum(realEstate, "zestimate"),
+    estateProp: "zestimate"
+  };
+}
+
+function averageLotSize(realEstate) {
+  const estateProp = "lotSize";
+  return {
+    header: "Average Lot Size",
+    data: () => wMath.average(realEstate, estateProp),
+    estateProp
+  };
+}
+
+function averageSqFt(realEstate) {
+  const estateProp = "sqFt";
+  return {
+    header: "Average Square Foot",
+    data: () => wMath.average(realEstate, estateProp),
+    estateProp
+  };
+}
+
+function averageHOA(realEstate) {
+  const estateProp = "hoa";
+  return {
+    header: "Average HOA Fees",
+    data: () => wMath.average(realEstate, estateProp),
+    estateProp
+  };
+}
+
+export default {
+  timeOnMarket,
+  ageOfHouse,
+  averageZestimate,
+  totalValue,
+  averageLotSize,
+  averageSqFt,
+  averageHOA
+};

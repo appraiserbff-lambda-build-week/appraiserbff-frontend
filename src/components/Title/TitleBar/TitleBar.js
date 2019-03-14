@@ -1,8 +1,7 @@
-import React, { useState } from "react";
+import React from "react";
 import styles from "./titleBar.module.scss";
 import { Link } from "react-router-dom";
-import { connect } from 'react-redux';
-
+import { connect } from "react-redux";
 
 const TitleBar = props => {
   return (
@@ -23,10 +22,13 @@ const TitleBar = props => {
 };
 
 const mapStateToProps = state => {
-  return{
-      email: state.user.username,
-      organization: state.user.organization
-  }
-}
+  return {
+    email: state.user.username,
+    organization: state.user.organization
+  };
+};
 
-export default connect(mapStateToProps, {})(TitleBar);
+export default connect(
+  mapStateToProps,
+  {}
+)(TitleBar);

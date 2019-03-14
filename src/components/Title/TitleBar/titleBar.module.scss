@@ -1,43 +1,39 @@
+$white: #e9e9e9;
+$green: #005703;
+$lightgreen: #008104;
 .titleBar {
-    background: #005703;
-    height: 10px;
-    display: flex;
-    flex-direction: row;
-    justify-content: space-between;
-    padding: 35px;
-    align-items: center;
-    margin: 0 auto;
-    font-family: 'Muli', sans-serif;
-  
-    h2 {
-      color: rgba(255, 255, 255, 0.479);
-      font-size: 30px;
-      margin-left: 20px;
-    }
+  background: linear-gradient($lightgreen, $green);
+  height: 10px;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  padding: 35px;
+  align-items: center;
+  margin: 0 auto;
+  font-family: "Muli", sans-serif;
+  h2 {
+    color: rgba(255, 255, 255, 0.479);
+    font-size: 30px;
+    text-shadow: $white 1px 1px 5px;
+    margin-left: 20px;
   }
-  
-  .user {
-    display: flex;
-    align-items: center;
-  
-    i {
-      color: white;
-      margin-right: 12px;
-    }
-  
-    h3 {
-      color: white;
-      margin-right: 50px;
-      font-size: 30px;
-      @media(max-width: 700px){
-        display: none;
-      }
-    }
-    div {
-      width: 45px;
-      height: 45px;
-      background: white;
-      border-radius: 50%;
-    }
+}
+.user {
+  display: flex;
+  align-items: center;
+  i {
+    color: $white;
+    margin-right: 12px;
   }
-  
+  h3 {
+    color: $white;
+    margin-right: 50px;
+    font-size: 30px;
+  }
+  div {
+    width: 45px;
+    height: 45px;
+    background: $white;
+    border-radius: 50%;
+  }
+}

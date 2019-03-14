@@ -1,6 +1,6 @@
 function average(realEstate, key) {
   // Works for keys: zestimate, certainty
-  return Math.round(_getSum(realEstate, key) / realEstate.length);
+  return Math.round(getSum(realEstate, key) / realEstate.length);
 }
 
 function averageAge(realEstate) {
@@ -19,8 +19,8 @@ function averageOnMarket(realEstate) {
   return Math.round(ms / (1000 * 60 * 60 * 24));
 }
 
-function _getSum(realEstate, key) {
+function getSum(realEstate, key) {
   return realEstate.reduce((acc, estate) => acc + estate[key], 0);
 }
 
-export default { average, averageAge, averageOnMarket };
+export default { average, averageAge, averageOnMarket, getSum };

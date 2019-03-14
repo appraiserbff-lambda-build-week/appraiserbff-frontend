@@ -35,8 +35,8 @@ export const SET_WIDGETS = "SET_WIDGETS";
 
 const url = "https://ajbrush.com/home-api";
 
-export const getRealEstate = token => dispatch => {
-  console.log("2", token);
+export const getRealEstate = () => dispatch => {
+  const token = localStorage.getItem("token");
   axios
     .post(`${url}/properties`, { token })
     .then(res => dispatch({ type: GET_REAL_ESTATE, payload: res.data }))
@@ -54,7 +54,7 @@ export const logUserIn = ({ username, password }) => dispatch => {
       localStorage.setItem("token", res.data.token);
       console.log("1", res.data.token);
       dispatch({ type: LOGIN_SUCCESSFUL, payload: res.data.user });
-      dispatch(getRealEstate(res.data.token));
+      dispatch(getRealEstate());
     })
     .catch(err => console.log(err));
 };
@@ -87,10 +87,10 @@ export const setUserView = view => {
 
 export const setWidgets = widgets => dispatch => {
   dispatch({ type: UPDATING_WIDGETS });
-
+  const token = localStorage.getItem("token");
   axios
-    .put("", widgets)
-    .then(res => dispatch({ type: SET_WIDGETS, payload: res.data }))
+    .post(`${url}/user/update-widgets`, { widgets, token })
+    .then(res => dispatch({ type: SET_WIDGETS, payload: widgets }))
     .catch(err => console.log(err));
 };
 
@@ -99,13 +99,15 @@ export const addRealEstate = realEstate => dispatch => {
   const token = localStorage.getItem("token");
   axios
     .post(`${url}/properties/add`, { ...realEstate, token })
-    .then(res =>
+    .then(res => {
       dispatch({
         type: ADD_REAL_ESTATE,
         payload: { ...realEstate, id: res.data }
-      })
-    )
-    .catch(err => dispatch({type: ADD_REAL_ESTATE_FAIL, payload: err}));
+      });
+      dispatch(getRealEstate());
+    })
+    .catch(err => console.log(err));
+
 };
 
 export const setSortBy = sortObj => {

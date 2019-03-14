@@ -5,6 +5,7 @@ import {
   SET_USER_VIEW,
   UPDATE_ACCOUNT,
   ADD_REAL_ESTATE,
+  GET_REAL_ESTATE,
   UPDATING_REAL_ESTATE,
   SET_REAL_ESTATE_SORT,
   DELETE_REAL_ESTATE,
@@ -30,7 +31,6 @@ const initialState = {
 };
 
 export default (state = initialState, action) => {
-  console.log("FOUND ACTION: ", action.type);
   switch (action.type) {
     case MOCK_DATA_PULL:
       console.log(action.payload.user);
@@ -43,7 +43,12 @@ export default (state = initialState, action) => {
     case LOGGING_IN:
       return { ...state, loggingIn: true };
     case LOGIN_SUCCESSFUL:
-      return { ...state, loggingIn: false, error: null, user: action.payload };
+      return {
+        ...state,
+        loggingIn: false,
+        error: null,
+        user: { ...action.payload, realEstate: [] }
+      };
     case LOGIN_ERROR:
       return { ...state, loggingIn: false, error: action.payload };
 
@@ -67,8 +72,14 @@ export default (state = initialState, action) => {
       };
 
     // Real Estate reducers
-    case UPDATING_REAL_ESTATE:
-      return { ...state, updatingRealEstate: true };
+    case GET_REAL_ESTATE:
+      return {
+        ...state,
+        user: {
+          ...state.user,
+          realEstate: [...state.user.realEstate, ...action.payload]
+        }
+      };
     case ADD_REAL_ESTATE:
       // If John returns full realEstate Array
       // return {
@@ -76,7 +87,7 @@ export default (state = initialState, action) => {
       //   updatingRealEstate: false,
       //   user: { ...state.user, realEstate: action.payload }
 
-      // If John returns single realEstate Object
+      //If John returns single realEstate Object
       return {
         ...state,
         updatingRealEstate: false,
@@ -86,6 +97,9 @@ export default (state = initialState, action) => {
           realEstate: [...state.user.realEstate, action.payload]
         }
       };
+
+    // If John returns single id
+    //return;
 
     case SET_REAL_ESTATE_SORT:
       return { ...state, sortBy: action.payload };

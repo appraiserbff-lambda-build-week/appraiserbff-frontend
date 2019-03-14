@@ -60,16 +60,17 @@ const CardContainer = props => {
     [props.userView, props.realEstate, props.sortBy]
   );
   const [filterBySearch, seFilterBySearch] = useState("");
-
+  console.log(props.realEstate);
   return (
     <div className={styles.cardContainerWrapper}>
       <div className={styles.flexTop}>
         <div>
           <label>filter results:</label>
-          <input 
-          value={filterBySearch}
-          onChange={e => seFilterBySearch(e.target.value)}
-          type="text" />
+          <input
+            value={filterBySearch}
+            onChange={e => seFilterBySearch(e.target.value)}
+            type="text"
+          />
         </div>
 
         <div>
@@ -112,10 +113,11 @@ const CardContainer = props => {
         </Link>
       </div>
       <div className={styles.cardContainer}>
-        {localRealEstate.filter(item => item.address.includes(filterBySearch)).map(item => (
-          <Card mode={item.mode} key={item.id} item={item} />
-        ))}
-
+        {localRealEstate
+          .filter(item => item.address.includes(filterBySearch))
+          .map(item => (
+            <Card mode={item.mode} key={item.id} item={item} />
+          ))}
       </div>
     </div>
   );
@@ -133,4 +135,3 @@ export default connect(
   mapStateToProps,
   { setUserView }
 )(CardContainer);
-

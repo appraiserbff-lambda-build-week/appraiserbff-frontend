@@ -50,7 +50,7 @@ const Card = props => {
           {props.mode === "sell" ? (
             <span style={{ color: "green" }}>sell</span>
           ) : (
-            <span style={{ color: "red" }}>buy</span>
+            <span style={{ color: "#573143" }}>buy</span>
           )}
         </p>
       </div>

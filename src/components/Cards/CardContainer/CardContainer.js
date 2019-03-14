@@ -114,11 +114,17 @@ const CardContainer = props => {
         </Link>
       </div>
       <div className={styles.cardContainer}>
-        {localRealEstate
-          .filter(item => item.address.includes(filterBySearch))
-          .map(item => (
-            <Card mode={item.mode} key={item.id} item={item} />
-          ))}
+        {localRealEstate.length === 0 ? (
+          <p>add some properties to get started!</p>
+        ) : (
+          localRealEstate
+            .filter(item =>
+              item.address
+                .toLowerCase()
+                .includes(filterBySearch.toLocaleLowerCase())
+            )
+            .map(item => <Card mode={item.mode} key={item.id} item={item} />)
+        )}
       </div>
     </div>
   );

@@ -33,8 +33,9 @@ $lightgreen: #008104;
     transition: 0.2s ease-out 0s;
     &:hover {
       font-size: 2rem;
+    }
+  }
 
-  
   .newCardModal {
     position: absolute;
     top: 0;
@@ -44,7 +45,7 @@ $lightgreen: #008104;
     padding: 20px 10px;
     background: white;
     margin: 10vh auto;
-    font-family: 'Muli', sans-serif;
+    font-family: "Muli", sans-serif;
   }
   .cardSettingsTop {
     display: flex;
@@ -103,19 +104,16 @@ $lightgreen: #008104;
     }
 
     button {
-        width: 190px;
-        height: 35px;
-        background: #015703;
-        color: white;
-        cursor: pointer;
-        border-radius: 10px;
-        font-size: 16px;
-      }
+      width: 190px;
+      height: 35px;
+      background: #015703;
+      color: white;
+      cursor: pointer;
+      border-radius: 10px;
+      font-size: 16px;
+    }
   }
 
-  
-
-  
   .slider {
     -webkit-appearance: none;
     width: 50px;
@@ -123,15 +121,15 @@ $lightgreen: #008104;
     background: #d3d3d3;
     outline: none;
     opacity: 0.7;
-    -webkit-transition: .2s;
-    transition: opacity .2s;
+    -webkit-transition: 0.2s;
+    transition: opacity 0.2s;
     border-radius: 10px;
   }
-  
+
   .slider:hover {
     opacity: 1;
   }
-  
+
   .slider::-webkit-slider-thumb {
     -webkit-appearance: none;
     appearance: none;
@@ -178,4 +176,3 @@ $lightgreen: #008104;
   background: rgb(189, 40, 40);
   cursor: grab;
 }
-

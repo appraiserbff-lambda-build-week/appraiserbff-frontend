@@ -17,14 +17,21 @@ const CardContainer = props => {
         ? [...props.realEstate]
         : props.realEstate.filter(estate => estate.mode === props.userView);
 
-    if (!property || !order) {
+    if (!property || !order || !sorted.length) {
       return sorted;
     }
 
     return sorted.sort((a, b) => {
-      if (
-        Number(a[property].toString()).toString() === a[property].toString()
-      ) {
+      if (!a[property] || !b[property]) {
+        // Sometimes cards dont' get zestimates due to a bug in our
+        // card creating process.  This prevents it
+        console.log(`Uh oh, I don't have ${property}`);
+        return 0;
+      }
+      // I don't know if the data is going to be a "number" or number.
+      // So I convert to a string first just to get a baseline
+      const aStr = a[property].toString();
+      if (Number(aStr).toString() === aStr) {
         // Sort by number
         const aProp = Number(a[property]);
         const bProps = Number(b[property]);

@@ -76,6 +76,7 @@ export const createAccount = (
 export const updateAccount = newSettings => dispatch => {
   console.log(newSettings);
   dispatch({ type: UPDATE_ACCOUNT, payload: newSettings });
+  dispatch(push("/home"));
 
   // axios put for username/password
 };
@@ -95,7 +96,6 @@ export const setWidgets = widgets => dispatch => {
     .post(`${url}/user/update-widgets`, { widgets, token })
     .then(res => {
       dispatch({ type: SET_WIDGETS, payload: widgets });
-      console.log("Return to home");
       dispatch(push("/home"));
     })
     .catch(err => console.log(err));
@@ -112,6 +112,7 @@ export const addRealEstate = realEstate => dispatch => {
         payload: { ...realEstate, id: res.data }
       });
       dispatch(getRealEstate());
+      dispatch(push("/home"));
     })
     .catch(err => dispatch({ type: ADD_REAL_ESTATE_FAIL }));
 };
@@ -127,7 +128,7 @@ export const deleteRealEstate = id => dispatch => {
   dispatch({ type: UPDATING_REAL_ESTATE });
   const token = localStorage.getItem("token");
   axios
-    .delete(`${url}/properties/${id}`, { id, token })
+    .post(`${url}/properties/delete`, { id, token })
     .then(res => dispatch({ type: DELETE_REAL_ESTATE, payload: id }))
     .catch(err => console.log(err));
 };

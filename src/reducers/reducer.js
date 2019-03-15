@@ -11,9 +11,7 @@ import {
   UPDATING_WIDGETS,
   SET_WIDGETS,
   MOCK_DATA_PULL,
-  ADD_REAL_ESTATE_FAIL,
-  REDIRECT_HOME,
-  ROUTE_COMPLETE
+  ADD_REAL_ESTATE_FAIL
 } from "../actions";
 
 const initialState = {
@@ -158,18 +156,6 @@ export default (state = initialState, action) => {
         ...state,
         updatingWidgets: false,
         user: { ...state.user, widgets: action.payload }
-      };
-
-    // Send user back Home
-    case REDIRECT_HOME:
-      return {
-        ...state,
-        routing: true
-      };
-    case ROUTE_COMPLETE:
-      return {
-        ...state,
-        routing: false
       };
     default:
       return state;

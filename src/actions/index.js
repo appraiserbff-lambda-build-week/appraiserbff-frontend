@@ -38,11 +38,16 @@ export const ROUTE_COMPLETE = "ROUTE_COMPLETE";
 
 const url = "https://ajbrush.com/home-api";
 
-export const getRealEstate = () => dispatch => {
+export const getRealEstate = route => dispatch => {
   const token = localStorage.getItem("token");
   axios
     .post(`${url}/properties`, { token })
-    .then(res => dispatch({ type: GET_REAL_ESTATE, payload: res.data }))
+    .then(res => {
+      dispatch({ type: GET_REAL_ESTATE, payload: res.data });
+      if (route) {
+        dispatch(push(route));
+      }
+    })
     .catch(err => console.log(err));
 };
 
@@ -108,8 +113,7 @@ export const addRealEstate = realEstate => dispatch => {
         type: ADD_REAL_ESTATE,
         payload: { ...realEstate, id: res.data }
       });
-      dispatch(getRealEstate());
-      dispatch(push("/home"));
+      dispatch(getRealEstate("/home"));
     })
     .catch(err => dispatch({ type: ADD_REAL_ESTATE_FAIL }));
 };
@@ -122,14 +126,12 @@ export const setSortBy = sortObj => {
 };
 
 export const deleteRealEstate = id => dispatch => {
-  console.log("Deleting: ", id);
   dispatch({ type: UPDATING_REAL_ESTATE });
   const token = localStorage.getItem("token");
   axios
     .post(`${url}/properties/delete`, { id, token })
     .then(res => {
-      dispatch({ type: DELETE_REAL_ESTATE, payload: id });
-      dispatch(push("/home"));
+      dispatch(getRealEstate("/home"));
     })
     .catch(err => console.log(err));
 };

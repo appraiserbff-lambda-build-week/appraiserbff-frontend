@@ -82,7 +82,7 @@ export default (state = initialState, action) => {
         ...state,
         user: {
           ...state.user,
-          realEstate: [...state.user.realEstate, ...action.payload]
+          realEstate: [...action.payload]
         }
       };
     case ADD_REAL_ESTATE:
@@ -134,10 +134,10 @@ export default (state = initialState, action) => {
           updatingRealEstate: false,
           user: {
             ...state.user,
-            realEstate: {
-              ...state.user.realEstate,
-              [state.userView]: action.payload
-            }
+            realEstate: [
+              ...state.user.realEstate.slice(0, index),
+              ...state.user.realEstate.slice(index + 1)
+            ]
           }
         };
       } else {

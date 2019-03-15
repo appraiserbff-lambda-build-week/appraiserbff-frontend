@@ -20,7 +20,7 @@ function Widget(props) {
       <div className={styles.info}>
         <h2>{widgetObj.header}</h2>
         <p>
-          {widgetObj.data() || isNaN(widgetObj.data()) ? widgetObj.data() : ""}
+          {widgetObj.data() || !isNaN(widgetObj.data()) ? widgetObj.data() : ""}
         </p>
       </div>
       <div className={styles.sortArrows}>

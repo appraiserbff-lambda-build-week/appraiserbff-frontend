@@ -73,11 +73,13 @@ const NewCard = props => {
       city &&
       thisState &&
       zip &&
-      bed &&
-      bath &&
-      proAge &&
-      sqFt &&
-      lotSize &&
+      Number(bed) > 0 &&
+      Number(bed) < 10 &&
+      Number(bath) > 0 &&
+      Number(bath) < 10 &&
+      Number(proAge) > 0 &&
+      Number(sqFt) > 0 &&
+      Number(lotSize) > 0 &&
       hoa >= 0 &&
       proType &&
       yearAssessed &&
@@ -89,6 +91,7 @@ const NewCard = props => {
         "cando/co-op/duplex",
         "singlefamily"
       ];
+      const buySellConversion = { 1: "buy", 2: "sell" };
       let propNumber = 0;
 
       propertyTypes.forEach((type, i) => {
@@ -96,7 +99,6 @@ const NewCard = props => {
           propNumber = i + 1;
         }
       });
-      const mode = sliderPos === 1 ? "buy" : "sell";
       const totalRooms = rooms.length
         ? rooms
         : (Number(bed) + Number(bath)).toString();
@@ -114,7 +116,7 @@ const NewCard = props => {
         hoa,
         type: propNumber,
         onMarket: new Date(),
-        mode,
+        mode: buySellConversion[sliderPos],
         yearAssessed,
         rooms: totalRooms,
         taxes

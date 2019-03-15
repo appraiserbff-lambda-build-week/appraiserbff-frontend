@@ -4,8 +4,6 @@ import styles from "./login.module.scss";
 import { logUserIn, createAccount } from "../../actions";
 
 const Login = props => {
-  const [loginFailed, setLoginFailed] = useState(false);
-
   //log in
   const [username, setUsername] = useState("");
   const [password, setPassword] = useState("");

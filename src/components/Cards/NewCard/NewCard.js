@@ -12,7 +12,7 @@ const NewCard = props => {
   const [city, setCity] = useState("");
   const [thisState, setThisState] = useState("");
   //info for bottom form
-  const [sliderPos, setSliderPos] = useState(1);
+  const [sliderPos, setSliderPos] = useState(2);
   //onst [yearBuilt, setYearBuilt] = useState("");
   //const [perSqFt, setPerSqFt] = useState("");
   // info for backend
@@ -123,7 +123,7 @@ const NewCard = props => {
       console.log(newProperty);
       //gunu have to also pass it buySell so it know where to put it
       props.addRealEstate(newProperty);
-
+      
     }
   };
 
@@ -207,7 +207,7 @@ const NewCard = props => {
             <label>bed:</label>
             <input
               type="number"
-              style={{ marginLeft: "77px" }}
+              style={{ marginLeft: "87px" }}
               value={bed}
               onChange={e => {
                 e.preventDefault();
@@ -220,7 +220,7 @@ const NewCard = props => {
             <label>bath:</label>
             <input
               type="number"
-              style={{ marginLeft: "73px" }}
+              style={{ marginLeft: "82px" }}
               value={bath}
               onChange={e => {
                 e.preventDefault();
@@ -233,7 +233,7 @@ const NewCard = props => {
             <label>sq footage:</label>
             <input
               type="number"
-              style={{ marginLeft: "34px" }}
+              style={{ marginLeft: "38px" }}
               value={sqFt}
               onChange={e => {
                 e.preventDefault();
@@ -246,7 +246,7 @@ const NewCard = props => {
             <label>lot size:</label>
             <input
               type="number"
-              style={{ marginLeft: "55px" }}
+              style={{ marginLeft: "66px" }}
               value={lotSize}
               onChange={e => {
                 e.preventDefault();
@@ -259,7 +259,7 @@ const NewCard = props => {
             <label>HOA/month:</label>
             <input
               type="number"
-              style={{ marginLeft: "21px" }}
+              style={{ marginLeft: "30px" }}
               value={hoa}
               onChange={e => {
                 e.preventDefault();
@@ -272,7 +272,7 @@ const NewCard = props => {
             <label>property type:</label>
             <input
               type="text"
-              style={{ marginLeft: "12px" }}
+              style={{ marginLeft: "18px" }}
               value={proType}
               onChange={e => {
                 e.preventDefault();
@@ -285,7 +285,7 @@ const NewCard = props => {
             <label>property age:</label>
             <input
               type="number"
-              style={{ marginLeft: "14px" }}
+              style={{ marginLeft: "23px" }}
               value={proAge}
               onChange={e => {
                 e.preventDefault();
@@ -293,6 +293,54 @@ const NewCard = props => {
               }}
             />
           </div>
+
+
+
+          <div>
+            <label>year assessed:</label>
+            <input
+              type="number"
+              style={{ marginLeft: "14px" }}
+              value={yearAssessed}
+              onChange={e => {
+                e.preventDefault();
+                setYearAssessed(e.target.value);
+              }}
+            />
+          </div>
+
+
+          <div>
+            <label>taxes:</label>
+            <input
+              type="number"
+              style={{ marginLeft: "80px" }}
+              value={taxes}
+              onChange={e => {
+                e.preventDefault();
+                setTaxes(e.target.value);
+              }}
+            />
+          </div>
+
+
+
+          <div>
+            <label>rooms:</label>
+            <input
+              type="number"
+              style={{ marginLeft: "74px" }}
+              value={rooms}
+              onChange={e => {
+                e.preventDefault();
+                setRooms(e.target.value);
+              }}
+            />
+          </div>
+
+
+
+
 
           <div style={{ display: "flex", alignItems: "center" }}>
             {sliderPos === "1" ? (
@@ -322,6 +370,7 @@ const NewCard = props => {
         </form>
         <hr />
         {props.addRealEstateFail ? <p style={{fontSize: "20px", color: "red"}}>submit failed...</p> : null}
+        {props.addRealEstateSuccess ? <p style={{fontSize: "20px", color: "green"}}>submit success!!</p> : null}
       </div>
     </div>
   );
@@ -330,7 +379,8 @@ const NewCard = props => {
 
 const mapStateToProps = state => {
   return{
-    addRealEstateFail: state.addRealEstateFail
+    addRealEstateFail: state.addRealEstateFail,
+    addRealEstateSuccess: state.addRealEstateSuccess
   }
 }
 

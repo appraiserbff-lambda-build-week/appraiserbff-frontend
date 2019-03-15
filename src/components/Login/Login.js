@@ -45,9 +45,12 @@ const Login = props => {
             password: password
           };
           props.logUserIn(credentials);
-          if(!localStorage.getItem("token")){
-            setLoginFailed(!loginFailed);
-          }
+
+          setTimeout(() => {
+            if(!localStorage.getItem("token")){
+              setLoginFailed(!loginFailed);
+            }
+          } ,1500)
         }}
       >
         {loginFailed ? <p style={{fontSize: "20px", color: "red"}}>Login failed...</p> : null}
@@ -62,7 +65,7 @@ const Login = props => {
 
         <label>Password</label>
         <input
-          type="text"
+          type="password"
           value={password}
           onChange={e => setPassword(e.target.value)}
         />
@@ -98,7 +101,7 @@ const Login = props => {
 
         <label>Password</label>
         <input
-          type="text"
+          type="password"
           value={newPassword}
           onChange={e => {
             setNewPassword(e.target.value);
@@ -107,7 +110,7 @@ const Login = props => {
 
         <label>Confirm Password</label>
         <input
-          type="text"
+          type="password"
           value={retypePass}
           onChange={e => {
             setRTPass(e.target.value);

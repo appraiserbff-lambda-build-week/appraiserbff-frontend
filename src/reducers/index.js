@@ -28,7 +28,8 @@ const initialState = {
   udpatingRealEstate: false,
   updatingWidgets: false,
   error: null,
-  addRealEstateFail: false
+  addRealEstateFail: false,
+  addRealEstateSuccess: false
 };
 
 export default (state = initialState, action) => {
@@ -97,7 +98,8 @@ export default (state = initialState, action) => {
           ...state.user,
           realEstate: [...state.user.realEstate, action.payload]
         },
-        addRealEstateFail: false
+        addRealEstateFail: false,
+        addRealEstateSuccess: true
       };
 
     // If John returns single id
@@ -105,7 +107,8 @@ export default (state = initialState, action) => {
       case ADD_REAL_ESTATE_FAIL: 
       return{
         ...state,
-        addRealEstateFail: true
+        addRealEstateFail: true,
+        addRealEstateSuccess: false
       }
 
 

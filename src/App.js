@@ -1,7 +1,7 @@
 // Library Imports
 import React, { Component } from "react";
 import { Route } from "react-router-dom";
-import { mockDataPull, clearRoute } from "./actions";
+import { mockDataPull } from "./actions";
 import { connect } from "react-redux";
 import { withRouter, Redirect } from "react-router-dom";
 // Styles
@@ -28,7 +28,7 @@ class App extends Component {
     //this.props.mockDataPull();
     window.addEventListener("beforeunload", localStorage.removeItem("token"));
   }
-  componentDidUnmount() {
+  componentWillUnmount() {
     window.removeEventListener(
       "beforeunload",
       localStorage.removeItem("token")
@@ -91,8 +91,7 @@ class App extends Component {
 
 const mapStateToProps = state => {
   return {
-    realEstate: state.user.realEstate,
-    routing: state.routing
+    realEstate: state.data.user.realEstate
   };
 };
 

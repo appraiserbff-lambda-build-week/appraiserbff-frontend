@@ -4,6 +4,7 @@
   "private": true,
   "dependencies": {
     "axios": "^0.18.0",
+    "connected-react-router": "^6.3.2",
     "node-sass": "^4.11.0",
     "react": "^16.8.4",
     "react-browser-router": "^2.1.2",

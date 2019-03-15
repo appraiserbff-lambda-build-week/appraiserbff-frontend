@@ -7,20 +7,21 @@ import * as serviceWorker from "./serviceWorker";
 
 // Redux imports
 import { Provider } from "react-redux";
-import { applyMiddleware, createStore } from "redux";
-import thunk from "redux-thunk";
-import reducer from "./reducers";
+import { ConnectedRouter } from "connected-react-router";
+import configureStore, { history } from "./configureStore";
 
 // Route imports
 import { BrowserRouter as Router } from "react-router-dom";
 
-const store = createStore(reducer, applyMiddleware(thunk));
+const store = configureStore();
 
 ReactDOM.render(
   <Provider store={store}>
-    <Router>
-      <App />
-    </Router>
+    <ConnectedRouter history={history}>
+      <Router>
+        <App />
+      </Router>
+    </ConnectedRouter>
   </Provider>,
   document.getElementById("root")
 );

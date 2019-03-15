@@ -332,8 +332,8 @@ const NewCard = props => {
 
 const mapStateToProps = state => {
   return {
-    addRealEstateFail: state.addRealEstateFail,
-    addRealEstateSuccess: state.addRealEstateSuccess
+    addRealEstateFail: state.data.addRealEstateFail,
+    addRealEstateSuccess: state.data.addRealEstateSuccess
   };
 };
 

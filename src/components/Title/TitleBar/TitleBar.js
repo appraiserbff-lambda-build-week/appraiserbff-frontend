@@ -23,8 +23,8 @@ const TitleBar = props => {
 
 const mapStateToProps = state => {
   return {
-    email: state.user.username,
-    organization: state.user.organization
+    email: state.data.user.username,
+    organization: state.data.user.organization
   };
 };
 

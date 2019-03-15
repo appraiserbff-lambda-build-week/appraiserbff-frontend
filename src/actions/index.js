@@ -1,4 +1,5 @@
 import axios from "axios";
+import { push } from "connected-react-router";
 
 //for mock data pull in CDM
 import mockData from "../MockData/sampleData.json";
@@ -94,7 +95,8 @@ export const setWidgets = widgets => dispatch => {
     .post(`${url}/user/update-widgets`, { widgets, token })
     .then(res => {
       dispatch({ type: SET_WIDGETS, payload: widgets });
-      dispatch({ type: REDIRECT_HOME });
+      console.log("Return to home");
+      dispatch(push("/home"));
     })
     .catch(err => console.log(err));
 };

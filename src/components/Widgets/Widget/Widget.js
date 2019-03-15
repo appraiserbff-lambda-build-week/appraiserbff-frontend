@@ -40,9 +40,9 @@ function Widget(props) {
 }
 
 const mapStateToProps = state => ({
-  widgets: state.user.widgets,
-  realEstate: state.user.realEstate,
-  userView: state.userView
+  widgets: state.data.user.widgets,
+  realEstate: state.data.user.realEstate,
+  userView: state.data.userView
 });
 
 export default connect(

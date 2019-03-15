@@ -25,18 +25,25 @@ import Login from "./components/Login/";
 
 class App extends Component {
   componentDidMount() {
-    this.props.mockDataPull();
+    //this.props.mockDataPull();
+    window.addEventListener("beforeunload", localStorage.removeItem("token"));
   }
+  componentWillUnmount() {
+    window.removeEventListener(
+      "beforeunload",
+      localStorage.removeItem("token")
+    );
+    localStorage.removeItem("token");
+  }
+
   render() {
     return (
       <div className="appContainer">
-
-
-        {/* {localStorage.getItem("token") ? (
+        {localStorage.getItem("token") ? (
           <Redirect to="/home/" />
         ) : (
           <Redirect to="/home/login/" />
-        )} */}
+        )}
 
         <Route
           path="/home/login"
@@ -84,7 +91,7 @@ class App extends Component {
 
 const mapStateToProps = state => {
   return {
-    realEstate: state.user.realEstate
+    realEstate: state.data.user.realEstate
   };
 };
 

@@ -61,11 +61,10 @@ const CardContainer = props => {
     [props.userView, props.realEstate, props.sortBy]
   );
   const [filterBySearch, seFilterBySearch] = useState("");
-  console.log(props.realEstate);
   return (
     <div className={styles.cardContainerWrapper}>
       <div className={styles.flexTop}>
-        <div>
+        <div className={styles.filterResults}>
           <label>filter results:</label>
           <input
             value={filterBySearch}
@@ -75,16 +74,6 @@ const CardContainer = props => {
         </div>
 
         <div>
-          <p>
-            {filteredByStatus === "1"
-              ? "all"
-              : filteredByStatus === "2"
-              ? "buy"
-              : filteredByStatus === "3"
-              ? "sell"
-              : null}
-          </p>
-
           <input
             type="range"
             min="1"
@@ -132,9 +121,9 @@ const CardContainer = props => {
 
 const mapStateToProps = state => {
   return {
-    realEstate: state.user.realEstate,
-    userView: state.userView,
-    sortBy: state.sortBy
+    realEstate: state.data.user.realEstate,
+    userView: state.data.userView,
+    sortBy: state.data.sortBy
   };
 };
 

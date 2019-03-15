@@ -125,8 +125,9 @@ export const setSortBy = sortObj => {
 
 export const deleteRealEstate = id => dispatch => {
   dispatch({ type: UPDATING_REAL_ESTATE });
+  const token = localStorage.getItem("token");
   axios
-    .delete(`${url}/properties/${id}`, id)
+    .delete(`${url}/properties/${id}`, { id, token })
     .then(res => dispatch({ type: DELETE_REAL_ESTATE, payload: id }))
     .catch(err => console.log(err));
 };

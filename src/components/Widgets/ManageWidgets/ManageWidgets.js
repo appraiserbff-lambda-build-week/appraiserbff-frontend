@@ -41,7 +41,7 @@ function ManageWidgets(props) {
   // Users widgets, in order
   const getUserWidgetList = () => {
     return localWidgets.map((name, index) => {
-      const { header } = widgetData[name]();
+      const { short } = widgetData[name]();
       let up, down;
       if (index > 0) {
         up = (
@@ -65,7 +65,7 @@ function ManageWidgets(props) {
       }
       return (
         <div key={name} className={styles.widget}>
-          <p>{header}</p>
+          <p>{short}</p>
           <div className={styles.arrows}>
             {up}
             {down}

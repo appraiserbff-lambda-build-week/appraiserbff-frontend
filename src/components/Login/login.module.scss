@@ -1,83 +1,83 @@
-.fullPage{
-    width: 100vw;
-    height: 100vh;
-    background: #e5d7c9;
+.fullPage {
+  width: 100vw;
+  height: 100vh;
+  background: #e5d7c9;
+  background-image: url("https://files.slack.com/files-pri/T4JUEB3ME-FGZLTNFGC/background_blur.jpeg");
 }
 
-.loginForm{
-    width: 400px;
-    height: 340px;
-    background: #07560B;
-    box-shadow: 0 0 100px rgba(0,0,0,0.4);
-    margin: 20vh auto;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: center;
+.loginForm {
+  width: 100%;
+  height: 340px;
+  background: #07560b;
+  box-shadow: 0 0 100px rgba(0, 0, 0, 0.4);
+  margin: 20vh auto;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
 
-    label{
-        font-size: 34px;
-        font-family: sans-serif;
-        margin: 10px;
-        color: white;
-    }
-    button{
-        width: 100px;
-        height: 30px;
-        margin: 15px;
-        font-size: 18px;
-        cursor: pointer;
-    }
-    input{
-        margin-bottom: 20px;
-    }
+  label {
+    font-size: 34px;
+    font-family: sans-serif;
+    margin: 10px;
+    color: white;
+  }
+  button {
+    width: 100px;
+    height: 30px;
+    margin: 15px;
+    font-size: 18px;
+    cursor: pointer;
+  }
+  input {
+    margin-bottom: 20px;
+  }
 
-    p{
-        color: #67BB9B;
-        font-family: sans-serif;
-        span{
-            color: rgb(103, 134, 187);
-            text-decoration: underline;
-            cursor: pointer;
-        }
+  p {
+    color: #67bb9b;
+    font-family: sans-serif;
+    span {
+      color: rgb(103, 134, 187);
+      text-decoration: underline;
+      cursor: pointer;
     }
+  }
 }
 
-.createAccForm{
-    width: 400px;
-    height: 540px;
-    background: #07560B;
-    box-shadow: 0 0 100px rgba(0,0,0,0.4);
-    margin: 20vh auto;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: center;
-    label{
-        font-size: 34px;
-        font-family: sans-serif;
-        margin: 10px;
-        color: white;
-    }
-    button{
-        width: 150px;
-        height: 30px;
-        margin: 15px;
-        font-size: 18px;
-        cursor: pointer;
-    }
-    input{
-        margin-bottom: 20px;
-    }
+.createAccForm {
+  width: 100%;
+  height: 540px;
+  background: #07560b;
+  box-shadow: 0 0 100px rgba(0, 0, 0, 0.4);
+  margin: 10vh auto;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  label {
+    font-size: 34px;
+    font-family: sans-serif;
+    margin: 10px;
+    color: white;
+  }
+  button {
+    width: 150px;
+    height: 30px;
+    margin: 15px;
+    font-size: 18px;
+    cursor: pointer;
+  }
+  input {
+    margin-bottom: 20px;
+  }
 
-
-    p{
-        color: #67BB9B;
-        font-family: sans-serif;
-        span{
-            color: rgb(103, 134, 187);
-            text-decoration: underline;
-            cursor: pointer;
-        }
+  p {
+    color: #67bb9b;
+    font-family: sans-serif;
+    span {
+      color: rgb(103, 134, 187);
+      text-decoration: underline;
+      cursor: pointer;
     }
+  }
 }

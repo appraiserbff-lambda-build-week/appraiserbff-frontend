@@ -5,7 +5,7 @@ import { push } from "connected-react-router";
 import mockData from "../MockData/sampleData.json";
 export const MOCK_DATA_PULL = "MOCK_DATA_PULL";
 export const mockDataPull = () => dispatch => {
-  console.log(mockData);
+  //console.log(mockData);
   dispatch({ type: MOCK_DATA_PULL, payload: mockData });
 };
 
@@ -38,11 +38,16 @@ export const ROUTE_COMPLETE = "ROUTE_COMPLETE";
 
 const url = "https://ajbrush.com/home-api";
 
-export const getRealEstate = () => dispatch => {
+export const getRealEstate = route => dispatch => {
   const token = localStorage.getItem("token");
   axios
     .post(`${url}/properties`, { token })
-    .then(res => dispatch({ type: GET_REAL_ESTATE, payload: res.data }))
+    .then(res => {
+      dispatch({ type: GET_REAL_ESTATE, payload: res.data });
+      if (route) {
+        dispatch(push(route));
+      }
+    })
     .catch(err => console.log(err));
 };
 
@@ -56,7 +61,7 @@ export const logUserIn = ({ username, password }) => dispatch => {
       dispatch({ type: LOGIN_SUCCESSFUL, payload: res.data.user });
       dispatch(getRealEstate());
     })
-    .catch(err => console.log(err));
+    .catch(err => dispatch({ type: LOGIN_ERROR, payload: err }));
 };
 
 export const createAccount = (
@@ -108,8 +113,7 @@ export const addRealEstate = realEstate => dispatch => {
         type: ADD_REAL_ESTATE,
         payload: { ...realEstate, id: res.data }
       });
-      dispatch(getRealEstate());
-      dispatch(push("/home"));
+      dispatch(getRealEstate("/home"));
     })
     .catch(err => dispatch({ type: ADD_REAL_ESTATE_FAIL }));
 };
@@ -126,6 +130,8 @@ export const deleteRealEstate = id => dispatch => {
   const token = localStorage.getItem("token");
   axios
     .post(`${url}/properties/delete`, { id, token })
-    .then(res => dispatch({ type: DELETE_REAL_ESTATE, payload: id }))
+    .then(res => {
+      dispatch(getRealEstate("/home"));
+    })
     .catch(err => console.log(err));
 };

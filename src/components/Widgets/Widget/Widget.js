@@ -19,7 +19,9 @@ function Widget(props) {
     <div className={styles.widget}>
       <div className={styles.info}>
         <h2>{widgetObj.header}</h2>
-        <p>{widgetObj.data()}</p>
+        <p>
+          {widgetObj.data() || !isNaN(widgetObj.data()) ? widgetObj.data() : ""}
+        </p>
       </div>
       <div className={styles.sortArrows}>
         <p>

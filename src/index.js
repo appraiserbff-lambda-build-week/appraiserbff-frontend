@@ -3,6 +3,7 @@ import React from "react";
 import ReactDOM from "react-dom";
 import "./index.css";
 import App from "./App";
+//import Login from "./components/Login/";
 import * as serviceWorker from "./serviceWorker";
 
 // Redux imports
@@ -11,6 +12,7 @@ import configureStore, { history } from "./configureStore";
 
 // Routes import
 import { ConnectedRouter } from "connected-react-router";
+//import { Switch, Route } from "react-router-dom";
 
 const store = configureStore();
 

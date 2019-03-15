@@ -1,5 +1,5 @@
 .titleBar {
-  background: #1C0A64;
+  background: #065608; //#1C0A64;
   height: 10px;
   display: flex;
   flex-direction: row;
@@ -7,7 +7,7 @@
   padding: 35px;
   align-items: center;
   margin: 0 auto;
-  font-family: 'Muli', sans-serif;
+  font-family: "Muli", sans-serif;
 
   h2 {
     color: rgba(255, 255, 255, 0.479);
@@ -29,7 +29,7 @@
     color: white;
     margin-right: 50px;
     font-size: 30px;
-    @media(max-width: 700px){
+    @media (max-width: 700px) {
       display: none;
     }
   }

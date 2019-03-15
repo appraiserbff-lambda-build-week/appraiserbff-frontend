@@ -40,23 +40,57 @@ class App extends Component {
     return (
       <div className="appContainer">
         {localStorage.getItem("token") ? (
-          <Redirect to="/home/" />
+          <Redirect to="/home" />
         ) : (
           <Redirect to="/home/login/" />
         )}
 
-        <Route
-          path="/home/login"
-          exact
-          render={props => <Login {...props} />}
-        />
+        <Route path="/home/login" render={props => <Login {...props} />} />
         {/* Home Routes */}
         <header className="titleBar">
-          <Route path="/home" render={props => <TitleBar {...props} />} />
+          <Route path="/home" exact render={props => <TitleBar {...props} />} />
+          <Route
+            path="/home/widgets"
+            render={props => <TitleBar {...props} />}
+          />
+          <Route
+            path="/home/account_settings"
+            render={props => <TitleBar {...props} />}
+          />
+          <Route path="/home/cards" render={props => <TitleBar {...props} />} />
+          <Route path="/home/card" render={props => <TitleBar {...props} />} />
         </header>
         <main className="content">
-          <Route path="/home" component={WidgetContainer} />
-          <Route path="/home" render={props => <CardContainer {...props} />} />
+          <Route path="/home" exact component={WidgetContainer} />
+          <Route
+            path="/home"
+            exact
+            render={props => <CardContainer {...props} />}
+          />
+
+          <Route path="/home/widgets" component={WidgetContainer} />
+          <Route
+            path="/home/widgets"
+            render={props => <CardContainer {...props} />}
+          />
+
+          <Route path="/home/account_settings" component={WidgetContainer} />
+          <Route
+            path="/home/account_settings"
+            render={props => <CardContainer {...props} />}
+          />
+
+          <Route path="/home/card" component={WidgetContainer} />
+          <Route
+            path="/home/card"
+            render={props => <CardContainer {...props} />}
+          />
+
+          <Route path="/home/cards" component={WidgetContainer} />
+          <Route
+            path="/home/cards"
+            render={props => <CardContainer {...props} />}
+          />
         </main>
         {/* Widget Routes */}
         <Route path="/home/widgets" component={ManageWidgets} />
@@ -68,12 +102,11 @@ class App extends Component {
         />
         <Route
           path="/home/card/:id"
-          exact
           render={props => (
             <FullCard
               {...props}
               {...this.props.realEstate.find(
-                item => item.id === props.match.params.id
+                item => item.id.toString() === props.match.params.id.toString()
               )}
             />
           )}

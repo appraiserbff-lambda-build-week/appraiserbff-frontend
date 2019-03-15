@@ -1,7 +1,6 @@
 import React from "react";
 import styles from "./fullCard.module.scss";
 import { Link } from "react-router-dom";
-
 import { connect } from "react-redux";
 import { deleteRealEstate } from "../../../actions";
 
@@ -33,7 +32,7 @@ const FullCard = props => {
             built: <span>{props.built}</span>
           </p>
           <p>
-            onMarket: <span>{props.onMarket}</span>
+            onMarket: <span>{formatDate(props.onMarket)}</span>
           </p>
           <p>
             zestimate: <span>{props.zestimate}</span>
@@ -54,6 +53,18 @@ const FullCard = props => {
     </div>
   );
 };
+
+function formatDate(date) {
+  var d = new Date(date),
+    month = "" + (d.getMonth() + 1),
+    day = "" + d.getDate(),
+    year = d.getFullYear();
+
+  if (month.length < 2) month = "0" + month;
+  if (day.length < 2) day = "0" + day;
+
+  return [month, day, year].join("/");
+}
 
 export default connect(
   null,

@@ -4,7 +4,6 @@ import styles from "./login.module.scss";
 import { logUserIn, createAccount } from "../../actions";
 
 const Login = props => {
-
   const [loginFailed, setLoginFailed] = useState(false);
 
   //log in
@@ -33,8 +32,6 @@ const Login = props => {
 
   return (
     <div className={styles.fullPage}>
-
-
       <form
         className={styles.loginForm}
         style={view ? null : { display: "none" }}
@@ -45,16 +42,11 @@ const Login = props => {
             password: password
           };
           props.logUserIn(credentials);
-
-          setTimeout(() => {
-            if(!localStorage.getItem("token")){
-              setLoginFailed(!loginFailed);
-            }
-          } ,1500)
         }}
       >
-        {loginFailed ? <p style={{fontSize: "20px", color: "red"}}>Login failed...</p> : null}
-
+        {props.loginError ? (
+          <p style={{ fontSize: "20px", color: "red" }}>Login failed...</p>
+        ) : null}
         <label>Email</label>
 
         <input
@@ -127,8 +119,11 @@ const Login = props => {
   );
 };
 
-export default connect(
-  null,
-  { logUserIn, createAccount }
+const mapStateToProps = state => ({
+  loginError: state.data.error
+});
 
+export default connect(
+  mapStateToProps,
+  { logUserIn, createAccount }
 )(Login);

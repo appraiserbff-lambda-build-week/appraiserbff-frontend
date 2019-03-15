@@ -5,7 +5,7 @@ import { push } from "connected-react-router";
 import mockData from "../MockData/sampleData.json";
 export const MOCK_DATA_PULL = "MOCK_DATA_PULL";
 export const mockDataPull = () => dispatch => {
-  console.log(mockData);
+  //console.log(mockData);
   dispatch({ type: MOCK_DATA_PULL, payload: mockData });
 };
 
@@ -56,7 +56,7 @@ export const logUserIn = ({ username, password }) => dispatch => {
       dispatch({ type: LOGIN_SUCCESSFUL, payload: res.data.user });
       dispatch(getRealEstate());
     })
-    .catch(err => console.log(err));
+    .catch(err => dispatch({ type: LOGIN_ERROR, payload: err }));
 };
 
 export const createAccount = (
@@ -122,10 +122,14 @@ export const setSortBy = sortObj => {
 };
 
 export const deleteRealEstate = id => dispatch => {
+  console.log("Deleting: ", id);
   dispatch({ type: UPDATING_REAL_ESTATE });
   const token = localStorage.getItem("token");
   axios
     .post(`${url}/properties/delete`, { id, token })
-    .then(res => dispatch({ type: DELETE_REAL_ESTATE, payload: id }))
+    .then(res => {
+      dispatch({ type: DELETE_REAL_ESTATE, payload: id });
+      dispatch(push("/home"));
+    })
     .catch(err => console.log(err));
 };

@@ -34,7 +34,6 @@ form.dialog {
         font-weight: bold;
       }
       div {
-        margin-top: 20px;
         &.widget {
           margin-top: 0px;
         }
@@ -46,7 +45,7 @@ form.dialog {
         position: relative;
         top: -20px;
         &:hover {
-          font-size: 1.2rem;
+          //font-size: 1.2rem;
         }
       }
     }
@@ -86,7 +85,10 @@ form.dialog {
 .sortWidgets {
   border: 1px solid black;
   width: 30%;
-  min-width: 160px;
+  min-width: 180px;
+  height: 160px;
+  max-height: 160px;
+  overflow-y: auto;
 }
 .widget {
   display: flex;
@@ -95,6 +97,7 @@ form.dialog {
   width: 100%;
   min-width: 160px;
   min-height: $height;
+  //text-align: center;
   &:nth-child(even) {
     background-color: rgb(194, 194, 194);
   }
@@ -102,8 +105,13 @@ form.dialog {
     background-color: rgb(250, 250, 250);
   }
   p {
-    margin-left: 4%;
+    width: 90%;
     text-decoration: none;
+    text-align: center;
+  }
+
+  div {
+    margin-right: 3px;
   }
 }
 .arrows {
@@ -124,4 +132,10 @@ form.dialog {
 .link {
   cursor: default;
   color: #000;
+}
+
+.allWidgets {
+  div {
+    margin: 5px 0;
+  }
 }

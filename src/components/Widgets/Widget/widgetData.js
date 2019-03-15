@@ -4,7 +4,8 @@ function timeOnMarket(realEstate) {
   return {
     header: "Average Market Age",
     data: () => wMath.averageOnMarket(realEstate),
-    estateProp: "onMarket"
+    estateProp: "onMarket",
+    short: "Market Age"
   };
 }
 
@@ -12,7 +13,8 @@ function ageOfHouse(realEstate) {
   return {
     header: "Average Building Age",
     data: () => wMath.average(realEstate, "age"),
-    estateProp: "age"
+    estateProp: "age",
+    short: "Building Age"
   };
 }
 
@@ -20,15 +22,17 @@ function averageZestimate(realEstate) {
   return {
     header: "Average Estimate",
     data: () => wMath.average(realEstate, "zestimate"),
-    estateProp: "zestimate"
+    estateProp: "zestimate",
+    short: "Estimate"
   };
 }
 
 function totalValue(realEstate) {
   return {
-    header: "Total Value",
+    header: "Estimate Sum",
     data: () => wMath.getSum(realEstate, "zestimate"),
-    estateProp: "zestimate"
+    estateProp: "zestimate",
+    short: "Estimate Sum"
   };
 }
 
@@ -37,7 +41,8 @@ function averageLotSize(realEstate) {
   return {
     header: "Average Lot Size",
     data: () => wMath.average(realEstate, estateProp),
-    estateProp
+    estateProp,
+    short: "Lot Size"
   };
 }
 
@@ -46,7 +51,8 @@ function averageSqFt(realEstate) {
   return {
     header: "Average Square Foot",
     data: () => wMath.average(realEstate, estateProp),
-    estateProp
+    estateProp,
+    short: "Square Foot"
   };
 }
 
@@ -55,7 +61,8 @@ function averageHOA(realEstate) {
   return {
     header: "Average HOA Fees",
     data: () => wMath.average(realEstate, estateProp),
-    estateProp
+    estateProp,
+    short: "HOA Fees"
   };
 }
 

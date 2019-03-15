@@ -25,7 +25,7 @@ const CardContainer = props => {
       if (!a[property] || !b[property]) {
         // Sometimes cards dont' get zestimates due to a bug in our
         // card creating process.  This prevents it
-        console.log(`Uh oh, I don't have ${property}`);
+        console.log(`No ${property} to sort`);
         return 0;
       }
       // I don't know if the data is going to be a "number" or number.
@@ -68,11 +68,18 @@ const CardContainer = props => {
     [props.userView, props.realEstate, props.sortBy]
   );
   const [filterBySearch, seFilterBySearch] = useState("");
+  const userView = props.userView ? (
+    <p style={{ textAlign: "center", width: "150px" }}>
+      {props.userView[0].toUpperCase() + props.userView.substring(1)}
+    </p>
+  ) : (
+    ""
+  );
   return (
     <div className={styles.cardContainerWrapper}>
       <div className={styles.flexTop}>
         <div className={styles.filterResults}>
-          <label>filter results:</label>
+          <label>Address Search:</label>
           <input
             value={filterBySearch}
             onChange={e => seFilterBySearch(e.target.value)}
@@ -80,7 +87,8 @@ const CardContainer = props => {
           />
         </div>
 
-        <div>
+        <div className={styles.sliderDIV}>
+          {userView}
           <input
             type="range"
             min="1"
@@ -110,8 +118,8 @@ const CardContainer = props => {
         </Link>
       </div>
       <div className={styles.cardContainer}>
-        {localRealEstate.length === 0 ? (
-          <p>add some properties to get started!</p>
+        {localRealEstate.length === 0 && props.username ? (
+          <p className={styles.noCards}>Click New Estimates to get started!</p>
         ) : (
           localRealEstate
             .filter(item =>
@@ -121,6 +129,12 @@ const CardContainer = props => {
             )
             .map(item => <Card mode={item.mode} key={item.id} item={item} />)
         )}
+
+        {!props.username ? (
+          <p className={styles.noCards}>Fetching your properties...</p>
+        ) : (
+          ""
+        )}
       </div>
     </div>
   );
@@ -129,6 +143,7 @@ const CardContainer = props => {
 const mapStateToProps = state => {
   return {
     realEstate: state.data.user.realEstate,
+    username: state.data.user.username,
     userView: state.data.userView,
     sortBy: state.data.sortBy
   };

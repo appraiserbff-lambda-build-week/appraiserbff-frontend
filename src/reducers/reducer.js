@@ -29,8 +29,7 @@ const initialState = {
   updatingWidgets: false,
   error: null,
   addRealEstateFail: false,
-  addRealEstateSuccess: false,
-  routing: false
+  addRealEstateSuccess: false
 };
 
 export default (state = initialState, action) => {
@@ -127,7 +126,7 @@ export default (state = initialState, action) => {
         }
       };
       const index = getObjectIndex();
-
+      console.log("index", index);
       if (index) {
         return {
           ...state,

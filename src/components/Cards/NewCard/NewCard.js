@@ -211,6 +211,8 @@ const NewCard = props => {
                 e.preventDefault();
                 setBed(e.target.value);
               }}
+              min="0"
+              max="9"
             />
           </div>
 
@@ -224,6 +226,8 @@ const NewCard = props => {
                 e.preventDefault();
                 setBath(e.target.value);
               }}
+              min="0"
+              max="9"
             />
           </div>
 
@@ -237,6 +241,7 @@ const NewCard = props => {
                 e.preventDefault();
                 setSqFt(e.target.value);
               }}
+              min="0"
             />
           </div>
 
@@ -250,6 +255,7 @@ const NewCard = props => {
                 e.preventDefault();
                 setLotSize(e.target.value);
               }}
+              min="0"
             />
           </div>
 
@@ -263,6 +269,7 @@ const NewCard = props => {
                 e.preventDefault();
                 setHoa(e.target.value);
               }}
+              min="0"
             />
           </div>
 
@@ -289,6 +296,7 @@ const NewCard = props => {
                 e.preventDefault();
                 setProAge(e.target.value);
               }}
+              min="0"
             />
           </div>
 
@@ -302,6 +310,7 @@ const NewCard = props => {
                 e.preventDefault();
                 setYearAssessed(e.target.value);
               }}
+              min="1000"
             />
           </div>
 
@@ -315,6 +324,7 @@ const NewCard = props => {
                 e.preventDefault();
                 setTaxes(e.target.value);
               }}
+              min="0"
             />
           </div>
 

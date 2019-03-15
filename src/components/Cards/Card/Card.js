@@ -27,9 +27,7 @@ const Card = props => {
         <p>
           estimate:{" "}
           <span>
-            {props.item.zestimate
-              ? `$${props.item.zestimate}`
-              : "Calculating..."}
+            {props.item.zestimate ? `$${props.item.zestimate}` : "..."}
           </span>
         </p>
         <p>
@@ -37,7 +35,7 @@ const Card = props => {
           <span>
             {props.item.certainty
               ? `$${Math.round(props.item.certainty)}`
-              : "Calculating..."}
+              : "..."}
           </span>
         </p>
       </div>

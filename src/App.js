@@ -26,6 +26,14 @@ import Login from "./components/Login/";
 class App extends Component {
   componentDidMount() {
     this.props.mockDataPull();
+    window.addEventListener("beforeunload", localStorage.removeItem("token"));
+  }
+  componentDidUnmount() {
+    window.removeEventListener(
+      "beforeunload",
+      localStorage.removeItem("token")
+    );
+    localStorage.removeItem("token");
   }
   render() {
     return (

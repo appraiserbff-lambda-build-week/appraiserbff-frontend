@@ -106,7 +106,7 @@ export const addRealEstate = realEstate => dispatch => {
       });
       dispatch(getRealEstate());
     })
-    .catch(err => console.log(err));
+    .catch(err => dispatch({type: ADD_REAL_ESTATE_FAIL}));
 
 };
 

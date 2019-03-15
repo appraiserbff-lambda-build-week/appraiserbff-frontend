@@ -7,11 +7,10 @@ import * as serviceWorker from "./serviceWorker";
 
 // Redux imports
 import { Provider } from "react-redux";
-import { ConnectedRouter } from "connected-react-router";
 import configureStore, { history } from "./configureStore";
 
-// Route imports
-import { BrowserRouter as Router } from "react-router-dom";
+// Routes import
+import { ConnectedRouter } from "connected-react-router";
 
 const store = configureStore();
 

@@ -47,15 +47,12 @@ export const getRealEstate = () => dispatch => {
 };
 
 export const logUserIn = ({ username, password }) => dispatch => {
-  console.log("Attempting Login");
   dispatch({ type: LOGGING_IN });
 
   axios
     .post(`${url}/login`, { username, password })
     .then(res => {
-      console.log(res.data);
       localStorage.setItem("token", res.data.token);
-      console.log("1", res.data.token);
       dispatch({ type: LOGIN_SUCCESSFUL, payload: res.data.user });
       dispatch(getRealEstate());
     })

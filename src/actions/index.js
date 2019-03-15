@@ -1,4 +1,5 @@
 import axios from "axios";
+import { push } from "connected-react-router";
 
 //for mock data pull in CDM
 import mockData from "../MockData/sampleData.json";
@@ -28,10 +29,12 @@ export const GET_REAL_ESTATE = "GET_REAL_ESTATE";
 export const SET_REAL_ESTATE_SORT = "SET_REAL_ESTATE_SORT";
 export const ADD_REAL_ESTATE = "ADD_REAL_ESTATE";
 export const DELETE_REAL_ESTATE = "DELETE_REAL_ESTATE";
-export const ADD_REAL_ESTATE_FAIL = "ADD_REAL_ESTATE_FAIL"
+export const ADD_REAL_ESTATE_FAIL = "ADD_REAL_ESTATE_FAIL";
 // Widget actions
 export const UPDATING_WIDGETS = "UPDATING_WIDGETS";
 export const SET_WIDGETS = "SET_WIDGETS";
+export const REDIRECT_HOME = "REDIRECT_HOME";
+export const ROUTE_COMPLETE = "ROUTE_COMPLETE";
 
 const url = "https://ajbrush.com/home-api";
 
@@ -44,15 +47,12 @@ export const getRealEstate = () => dispatch => {
 };
 
 export const logUserIn = ({ username, password }) => dispatch => {
-  console.log("Attempting Login");
   dispatch({ type: LOGGING_IN });
 
   axios
     .post(`${url}/login`, { username, password })
     .then(res => {
-      console.log(res.data);
       localStorage.setItem("token", res.data.token);
-      console.log("1", res.data.token);
       dispatch({ type: LOGIN_SUCCESSFUL, payload: res.data.user });
       dispatch(getRealEstate());
     })
@@ -73,6 +73,7 @@ export const createAccount = (
 export const updateAccount = newSettings => dispatch => {
   console.log(newSettings);
   dispatch({ type: UPDATE_ACCOUNT, payload: newSettings });
+  dispatch(push("/home"));
 
   // axios put for username/password
 };
@@ -90,7 +91,10 @@ export const setWidgets = widgets => dispatch => {
   const token = localStorage.getItem("token");
   axios
     .post(`${url}/user/update-widgets`, { widgets, token })
-    .then(res => dispatch({ type: SET_WIDGETS, payload: widgets }))
+    .then(res => {
+      dispatch({ type: SET_WIDGETS, payload: widgets });
+      dispatch(push("/home"));
+    })
     .catch(err => console.log(err));
 };
 
@@ -105,9 +109,9 @@ export const addRealEstate = realEstate => dispatch => {
         payload: { ...realEstate, id: res.data }
       });
       dispatch(getRealEstate());
+      dispatch(push("/home"));
     })
-    .catch(err => dispatch({type: ADD_REAL_ESTATE_FAIL}));
-
+    .catch(err => dispatch({ type: ADD_REAL_ESTATE_FAIL }));
 };
 
 export const setSortBy = sortObj => {
@@ -119,8 +123,9 @@ export const setSortBy = sortObj => {
 
 export const deleteRealEstate = id => dispatch => {
   dispatch({ type: UPDATING_REAL_ESTATE });
+  const token = localStorage.getItem("token");
   axios
-    .delete("", id)
+    .post(`${url}/properties/delete`, { id, token })
     .then(res => dispatch({ type: DELETE_REAL_ESTATE, payload: id }))
     .catch(err => console.log(err));
 };

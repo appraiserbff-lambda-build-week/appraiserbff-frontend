@@ -1,6 +1,6 @@
 import React, { useState, useEffect, Fragment } from "react";
 import styles from "./manageWidgets.module.scss";
-import { Link } from "react-browser-router";
+import { Link, withRouter } from "react-router-dom";
 import widgetData from "../Widget/widgetData.js";
 import { setWidgets } from "../../../actions";
 import { connect } from "react-redux";
@@ -138,11 +138,13 @@ function ManageWidgets(props) {
 }
 
 const mapStateToProps = state => ({
-  widgets: state.user.widgets,
-  updatingWidgets: state.updatingWidgets
+  widgets: state.data.user.widgets,
+  updatingWidgets: state.data.updatingWidgets
 });
 
-export default connect(
-  mapStateToProps,
-  { setWidgets }
-)(ManageWidgets);
+export default withRouter(
+  connect(
+    mapStateToProps,
+    { setWidgets }
+  )(ManageWidgets)
+);

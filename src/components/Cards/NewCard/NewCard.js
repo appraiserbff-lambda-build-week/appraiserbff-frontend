@@ -6,7 +6,6 @@ import { connect } from "react-redux";
 import { addRealEstate } from "../../../actions";
 
 const NewCard = props => {
-
   //info for top form
   const [address, setAddress] = useState("");
   const [city, setCity] = useState("");
@@ -120,10 +119,9 @@ const NewCard = props => {
         rooms: totalRooms,
         taxes
       };
-      console.log(newProperty);
+      //console.log(newProperty);
       //gunu have to also pass it buySell so it know where to put it
       props.addRealEstate(newProperty);
-      
     }
   };
 
@@ -294,8 +292,6 @@ const NewCard = props => {
             />
           </div>
 
-
-
           <div>
             <label>year assessed:</label>
             <input
@@ -308,7 +304,6 @@ const NewCard = props => {
               }}
             />
           </div>
-
 
           <div>
             <label>taxes:</label>
@@ -323,8 +318,6 @@ const NewCard = props => {
             />
           </div>
 
-
-
           <div>
             <label>rooms:</label>
             <input
@@ -337,10 +330,6 @@ const NewCard = props => {
               }}
             />
           </div>
-
-
-
-
 
           <div style={{ display: "flex", alignItems: "center" }}>
             {sliderPos === "1" ? (
@@ -369,21 +358,23 @@ const NewCard = props => {
           </button>
         </form>
         <hr />
-        {props.addRealEstateFail ? <p style={{fontSize: "20px", color: "red"}}>submit failed...</p> : null}
-        {props.addRealEstateSuccess ? <p style={{fontSize: "20px", color: "green"}}>submit success!!</p> : null}
+        {props.addRealEstateFail ? (
+          <p style={{ fontSize: "20px", color: "red" }}>Submit failed...</p>
+        ) : null}
+        {props.addRealEstateSuccess ? (
+          <p style={{ fontSize: "20px", color: "green" }}>Submit success!!</p>
+        ) : null}
       </div>
     </div>
   );
 };
 
-
 const mapStateToProps = state => {
-  return{
-    addRealEstateFail: state.addRealEstateFail,
-    addRealEstateSuccess: state.addRealEstateSuccess
-  }
-}
-
+  return {
+    addRealEstateFail: state.data.addRealEstateFail,
+    addRealEstateSuccess: state.data.addRealEstateSuccess
+  };
+};
 
 export default connect(
   mapStateToProps,

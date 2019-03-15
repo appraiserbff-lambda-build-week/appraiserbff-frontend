@@ -22,7 +22,7 @@ function WidgetContainer(props) {
 }
 
 const mapStateToProps = state => ({
-  widgets: state.user.widgets
+  widgets: state.data.user.widgets
 });
 
 export default connect(

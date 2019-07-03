@@ -36,7 +36,7 @@ export const SET_WIDGETS = "SET_WIDGETS";
 export const REDIRECT_HOME = "REDIRECT_HOME";
 export const ROUTE_COMPLETE = "ROUTE_COMPLETE";
 
-const url = "https://ajbrush.com/home-api";
+const url = "https://appraiser-buddy.herokuapp.com/";
 
 export const getRealEstate = route => dispatch => {
   const token = localStorage.getItem("token");

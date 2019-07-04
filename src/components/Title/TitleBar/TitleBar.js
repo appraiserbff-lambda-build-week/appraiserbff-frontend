@@ -46,7 +46,7 @@ const TitleBar = props => {
     //           style={{ textDecoration: "none", color: "white" }}
     //         ></Link>
     <div className={classes.root}>
-      <AppBar flat position="static">
+      <AppBar position="static">
         <Toolbar>
           <IconButton
             edge="start"

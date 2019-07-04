@@ -7,6 +7,7 @@
   box-shadow: grey 5px 5px 10px;
 }
 .top {
+  margin-top: 10px;
   width: 100%;
   display: flex;
   justify-content: space-between;
@@ -25,8 +26,14 @@
   //   margin-top: 20px;
   // }
   .fact {
-    font-size: "16px";
-    padding: "2px";
+    font-size: 16px;
+    padding: 2px;
+    text-align: center;
+  }
+  .buysell {
+    margin-top: 0;
+    font-size: 20px;
+    padding: 2px;
     text-align: center;
   }
 }

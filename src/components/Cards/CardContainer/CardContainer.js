@@ -4,9 +4,12 @@ import Card from "../Card";
 import { Link } from "react-router-dom";
 import { connect } from "react-redux";
 import { setUserView } from "../../../actions";
-import { makeStyles } from "@material-ui/core/styles";
 
+import { makeStyles } from "@material-ui/core/styles";
 import Button from "@material-ui/core/Button";
+import FormControl from "@material-ui/core/FormControl";
+import Input from "@material-ui/core/Input";
+import InputLabel from "@material-ui/core/InputLabel";
 
 const useStyles = makeStyles(theme => ({
   button: {
@@ -88,14 +91,14 @@ const CardContainer = props => {
   return (
     <div className={styles.cardContainerWrapper}>
       <div className={styles.flexTop}>
-        <div className={styles.filterResults}>
-          <label>Address Search:</label>
-          <input
+        <FormControl className={classes.formControl}>
+          <InputLabel htmlFor="component-simple">Address</InputLabel>
+          <Input
+            id="component-simple"
             value={filterBySearch}
             onChange={e => seFilterBySearch(e.target.value)}
-            type="text"
           />
-        </div>
+        </FormControl>
 
         <div className={styles.sliderDIV}>
           <span>{userView}</span>

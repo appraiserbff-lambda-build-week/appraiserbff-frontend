@@ -1,18 +1,16 @@
 .appContainer {
   display: flex;
   flex-direction: column;
-  
 
   main.content {
     display: flex;
     justify-content: space-around;
     max-width: 1900px;
     margin: 20px auto;
-    @media(max-width: 700px){
+    @media (max-width: 700px) {
       flex-direction: column;
       align-items: center;
       flex-direction: column-reverse;
     }
   }
 }
- 

@@ -10,7 +10,6 @@ import Button from "@material-ui/core/Button";
 
 const useStyles = makeStyles(theme => ({
   button: {
-    margin: theme.spacing(1),
     textDecoration: "none"
   },
   input: {
@@ -99,7 +98,7 @@ const CardContainer = props => {
         </div>
 
         <div className={styles.sliderDIV}>
-          {userView}
+          <span>{userView}</span>
           <input
             type="range"
             min="1"

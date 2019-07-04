@@ -2,11 +2,27 @@ import React, { useState } from "react";
 import { Link } from "react-router-dom";
 import styles from "./accountSettings.module.scss";
 
-import { connect } from 'react-redux';
-import { updateAccount } from '../../../actions'
+import { connect } from "react-redux";
+import { updateAccount } from "../../../actions";
 
+import { makeStyles } from "@material-ui/core/styles";
+import Button from "@material-ui/core/Button";
+import FormControl from "@material-ui/core/FormControl";
+import Input from "@material-ui/core/Input";
+import InputLabel from "@material-ui/core/InputLabel";
+
+const useStyles = makeStyles(theme => ({
+  button: {
+    textDecoration: "none"
+  },
+  input: {
+    display: "none"
+  }
+}));
 
 const AccountSettings = props => {
+  const classes = useStyles();
+
   const [email, setEmail] = useState(props.user.username);
 
   const [oldPass, setOldPass] = useState("");
@@ -40,8 +56,7 @@ const AccountSettings = props => {
   return (
     <div>
       <Link to="/home/">
-        <div className={styles.accountSettings}>  
-        </div>
+        <div className={styles.accountSettings} />
       </Link>
 
       <div className={styles.accountSettingsModal}>
@@ -71,63 +86,77 @@ const AccountSettings = props => {
             submitFormRequest();
           }}
         >
-          <div style={{ marginBottom: "30px" }}>
-            <label style={{ marginRight: "79px" }}>Change Email:</label>
-            <input
-              type="text"
-              value={email}
-              onChange={e => {
-                setEmail(e.target.value);
-              }}
-            />
+          <div style={{ marginBottom: "30px", marginTop: "30px" }}>
+            <FormControl className={classes.formControl}>
+              <InputLabel htmlFor="component-simple">Address</InputLabel>
+              <Input
+                id="component-simple"
+                value={email}
+                onChange={e => {
+                  setEmail(e.target.value);
+                }}
+              />
+            </FormControl>
           </div>
 
           <div>
-            <label style={{ marginRight: "80px" }}>Old Password:</label>
-            <input
-              type="text"
-              value={oldPass}
-              onChange={e => {
-                setOldPass(e.target.value);
-              }}
-            />
+            <FormControl className={classes.formControl}>
+              <InputLabel htmlFor="component-simple">Old Password</InputLabel>
+              <Input
+                id="component-simple"
+                value={oldPass}
+                onChange={e => {
+                  setOldPass(e.target.value);
+                }}
+              />
+            </FormControl>
           </div>
 
           <div>
-            <label style={{ marginRight: "74px" }}>New Password:</label>
-            <input
-              type="text"
-              value={newPass}
-              onChange={e => {
-                setNewPass(e.target.value);
-              }}
-            />
+            <FormControl className={classes.formControl}>
+              <InputLabel htmlFor="component-simple">New Password</InputLabel>
+              <Input
+                id="component-simple"
+                value={newPass}
+                onChange={e => {
+                  setNewPass(e.target.value);
+                }}
+              />
+            </FormControl>
           </div>
 
           <div>
-            <label style={{ marginRight: "50px" }}>Re-type Password:</label>
-            <input
-              type="text"
-              value={rtPass}
-              onChange={e => {
-                setRtPass(e.target.value);
-              }}
-            />
+            <FormControl className={classes.formControl}>
+              <InputLabel htmlFor="component-simple">
+                Re-type Password
+              </InputLabel>
+              <Input
+                id="component-simple"
+                value={rtPass}
+                onChange={e => {
+                  setRtPass(e.target.value);
+                }}
+              />
+            </FormControl>
           </div>
 
-          <button type="submit">Submit</button>
+          {/* <button type="submit">Submit</button> */}
+          <Button type="submit" color="primary" className={classes.button}>
+            Submit
+          </Button>
         </form>
       </div>
     </div>
-    
   );
 };
 
 const mapStateToProps = state => {
-    return{
-        user: state.data.user
-    }
-}
+  return {
+    user: state.data.user
+  };
+};
 
-
-export default connect(mapStateToProps, { updateAccount })(AccountSettings);
+export default connect(
+  mapStateToProps,
+  { updateAccount }
+)(AccountSettings);

@@ -6,15 +6,12 @@ const Card = props => {
     <div className={styles.card}>
       <div className={styles.top}>
         <div>
-          <p
-            style={{
-              textAlign: "left",
-              fontSize: "14px",
-              textDecoration: "underline",
-              textAlign: "center"
-            }}
-          >
-            Property
+          <p className={styles.buysell}>
+            {props.mode === "sell" ? (
+              <span style={{ color: "green" }}>Selling</span>
+            ) : (
+              <span style={{ color: "#573143" }}>Buying</span>
+            )}
           </p>
           <p className={styles.fact}>{props.item.address}</p>
           <p className={styles.fact}>
@@ -28,14 +25,10 @@ const Card = props => {
           <p className={styles.fact}>{props.item.age} years old</p>
           <p className={styles.fact}>{props.item.lotSize} ft lot</p>
           <p className={styles.fact}>
-            {props.item.bathrooms} bathrooms / {props.item.bedrooms} bedrooms
-          </p>
-          <p className={styles.fact}>
-            {props.mode === "sell" ? (
-              <span style={{ color: "green" }}>Selling</span>
-            ) : (
-              <span style={{ color: "#573143" }}>Buying</span>
-            )}
+            {props.item.bedrooms} bedroom
+            {Number(props.item.bedrooms) === 1 ? "" : "s"} /{" "}
+            {props.item.bathrooms} bathroom
+            {Number(props.item.bathrooms) === 1 ? "" : "s"}
           </p>
         </div>
       </div>

@@ -3,7 +3,23 @@ import { connect } from "react-redux";
 import styles from "./login.module.scss";
 import { logUserIn, createAccount } from "../../actions";
 
+import { makeStyles } from "@material-ui/core/styles";
+import Button from "@material-ui/core/Button";
+import FormControl from "@material-ui/core/FormControl";
+import Input from "@material-ui/core/Input";
+import InputLabel from "@material-ui/core/InputLabel";
+
+const useStyles = makeStyles(theme => ({
+  button: {
+    textDecoration: "none"
+  },
+  input: {
+    display: "none"
+  }
+}));
+
 const Login = props => {
+  const classes = useStyles();
   //log in
   const [username, setUsername] = useState("");
   const [password, setPassword] = useState("");
@@ -45,24 +61,30 @@ const Login = props => {
         {props.loginError ? (
           <p style={{ fontSize: "20px", color: "red" }}>Login failed...</p>
         ) : null}
-        <label>Email</label>
+        <FormControl className={classes.formControl}>
+          <InputLabel htmlFor="component-simple">Email</InputLabel>
+          <Input
+            id="component-simple"
+            value={username}
+            onChange={e => setUsername(e.target.value)}
+          />
+        </FormControl>
+        <FormControl className={classes.formControl}>
+          <InputLabel htmlFor="component-simple">Password</InputLabel>
+          <Input
+            id="component-simple"
+            type="password"
+            value={password}
+            onChange={e => setPassword(e.target.value)}
+          />
+        </FormControl>
 
-        <input
-          type="text"
-          value={username}
-          onChange={e => setUsername(e.target.value)}
-        />
-
-        <label>Password</label>
-        <input
-          type="password"
-          value={password}
-          onChange={e => setPassword(e.target.value)}
-        />
-
-        <button type="submit">submit</button>
+        {/* <button type="submit">submit</button> */}
+        <Button type="submit" color="primary" className={classes.button}>
+          Submit
+        </Button>
         <p>
-          no account? <span onClick={e => toggleView(!view)}>make one!</span>
+          no account? <span onClick={e => toggleView(!view)}>Sign Up</span>
         </p>
       </form>
 
@@ -71,43 +93,54 @@ const Login = props => {
         style={view ? { display: "none" } : { display: "flex" }}
         onSubmit={e => createAccount(e)}
       >
-        <label>Email</label>
-        <input
-          type="text"
-          value={newUsername}
-          onChange={e => {
-            setNewUsername(e.target.value);
-          }}
-        />
+        <FormControl className={classes.formControl}>
+          <InputLabel htmlFor="component-simple">Email</InputLabel>
+          <Input
+            id="component-simple"
+            type="text"
+            value={newUsername}
+            onChange={e => {
+              setNewUsername(e.target.value);
+            }}
+          />
+        </FormControl>
+        <FormControl className={classes.formControl}>
+          <InputLabel htmlFor="component-simple">Organization</InputLabel>
+          <Input
+            id="component-simple"
+            type="text"
+            value={companyName}
+            onChange={e => {
+              setCompanyName(e.target.value);
+            }}
+          />
+        </FormControl>
+        <FormControl className={classes.formControl}>
+          <InputLabel htmlFor="component-simple">Password</InputLabel>
+          <Input
+            id="component-simple"
+            type="password"
+            value={newPassword}
+            onChange={e => {
+              setNewPassword(e.target.value);
+            }}
+          />
+        </FormControl>
+        <FormControl className={classes.formControl}>
+          <InputLabel htmlFor="component-simple">Confirm Password</InputLabel>
+          <Input
+            id="component-simple"
+            type="password"
+            value={retypePass}
+            onChange={e => {
+              setRTPass(e.target.value);
+            }}
+          />
+        </FormControl>
 
-        <label>Organization</label>
-        <input
-          type="text"
-          value={companyName}
-          onChange={e => {
-            setCompanyName(e.target.value);
-          }}
-        />
-
-        <label>Password</label>
-        <input
-          type="password"
-          value={newPassword}
-          onChange={e => {
-            setNewPassword(e.target.value);
-          }}
-        />
-
-        <label>Confirm Password</label>
-        <input
-          type="password"
-          value={retypePass}
-          onChange={e => {
-            setRTPass(e.target.value);
-          }}
-        />
-
-        <button type="submit">create account</button>
+        <Button type="submit" color="primary" className={classes.button}>
+          Submit
+        </Button>
 
         <p>
           <span onClick={e => toggleView(!view)}>back to login...</span>

@@ -107,7 +107,6 @@ section {
 }
 body {
   line-height: 1;
-  font-family: "Muli", sans-serif;
 }
 ol,
 ul {
@@ -129,18 +128,12 @@ table {
   border-spacing: 0;
 }
 // Global styles
+@import "./variables.scss";
 * {
-  box-sizing: content-box; //font-size: 62.5%;
+  box-sizing: content-box;
+  // font-size: 62.5%;
+  font-family: $font;
 }
-// Variables
-// Colors
-$green: #065608;
-$darkGrey: #7d7b7b;
-$grey: #9ea3a4;
-$lightGrey: #e9e9e9;
-$red: #bf6363;
-$white: #e9e9e9;
-$purple: #1c0a64;
 .allBG {
   background-color: $purple;
 }

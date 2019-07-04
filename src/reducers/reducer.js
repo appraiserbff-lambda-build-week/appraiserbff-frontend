@@ -10,7 +10,6 @@ import {
   DELETE_REAL_ESTATE,
   UPDATING_WIDGETS,
   SET_WIDGETS,
-  MOCK_DATA_PULL,
   ADD_REAL_ESTATE_FAIL
 } from "../actions";
 
@@ -37,13 +36,6 @@ export default (state = initialState, action) => {
     return state;
   }
   switch (action.type) {
-    case MOCK_DATA_PULL:
-      console.log(action.payload.user);
-      return {
-        ...state,
-        ...action.payload
-      };
-
     // Login reducers
     case LOGGING_IN:
       return { ...state, loggingIn: true };

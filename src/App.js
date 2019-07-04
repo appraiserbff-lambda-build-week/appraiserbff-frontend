@@ -1,11 +1,10 @@
 // Library Imports
 import React, { Component } from "react";
 import { Route } from "react-router-dom";
-import { mockDataPull } from "./actions";
 import { connect } from "react-redux";
 import { withRouter, Redirect } from "react-router-dom";
 // Styles
-import "./globalStyles.scss";
+import "./styles/globalStyles.scss";
 import "./App.scss";
 // Component Imports
 // Main Components
@@ -25,7 +24,6 @@ import Login from "./components/Login/";
 
 class App extends Component {
   componentDidMount() {
-    //this.props.mockDataPull();
     window.addEventListener("beforeunload", localStorage.removeItem("token"));
   }
   componentWillUnmount() {
@@ -128,9 +126,4 @@ const mapStateToProps = state => {
   };
 };
 
-export default withRouter(
-  connect(
-    mapStateToProps,
-    { mockDataPull }
-  )(App)
-);
+export default withRouter(connect(mapStateToProps)(App));

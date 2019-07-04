@@ -1,5 +1,6 @@
+@import "styles/variables.scss";
+
 .cardContainer {
-  font-family: "Muli", sans-serif;
   margin: auto;
   width: 100%;
   max-width: 1100px;
@@ -44,7 +45,7 @@
     width: 190px;
     right: 0;
     height: 35px;
-    background: #716127;
+    background-color: $purple;
     font-weight: bold;
     color: white;
     cursor: pointer;

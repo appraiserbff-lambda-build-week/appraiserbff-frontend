@@ -1,14 +1,6 @@
 import axios from "axios";
 import { push } from "connected-react-router";
 
-//for mock data pull in CDM
-import mockData from "../MockData/sampleData.json";
-export const MOCK_DATA_PULL = "MOCK_DATA_PULL";
-export const mockDataPull = () => dispatch => {
-  //console.log(mockData);
-  dispatch({ type: MOCK_DATA_PULL, payload: mockData });
-};
-
 // Log in actions
 export const LOGGING_IN = "LOGGING_IN";
 export const LOGIN_SUCCESSFUL = "LOGIN_SUCCESSFUL";
@@ -36,7 +28,7 @@ export const SET_WIDGETS = "SET_WIDGETS";
 export const REDIRECT_HOME = "REDIRECT_HOME";
 export const ROUTE_COMPLETE = "ROUTE_COMPLETE";
 
-const url = "https://appraiser-buddy.herokuapp.com/";
+const url = "https://appraiser-buddy.herokuapp.com";
 
 export const getRealEstate = route => dispatch => {
   const token = localStorage.getItem("token");

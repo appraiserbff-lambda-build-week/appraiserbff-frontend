@@ -1,4 +1,5 @@
 .accountSettings {
+  font-family: "Roboto", sans-serif;
   width: 100vw;
   height: 120vh;
   background: rgba(0, 0, 0, 0.8);
@@ -7,13 +8,21 @@
 }
 
 .accountSettingsModal {
-  width: 70%;
+  font-family: "Roboto", sans-serif;
+  width: 400px;
   padding: 20px 10px;
   background: white;
   margin: auto;
   position: absolute;
   top: 10vh;
-  left: 15%;
+  left: 35vw;
+
+  @media (max-width: 700px) {
+    left: 15vw;
+  }
+  @media (max-width: 500px) {
+    left: 10vw;
+  }
   form {
     margin-left: 15px;
     display: flex;
@@ -27,10 +36,6 @@
     }
 
     button {
-      width: 190px;
-      height: 35px;
-      background: #005703;
-      color: white;
       cursor: pointer;
       margin-top: 40px;
       border-radius: 10px;
@@ -45,6 +50,6 @@
   padding: 0 20px;
   h2 {
     margin: 10px 0;
-    font-size: 35px;
+    font-size: 22px;
   }
 }

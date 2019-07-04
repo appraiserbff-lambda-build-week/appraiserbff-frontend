@@ -6,7 +6,7 @@
   width: 100%;
 
   &:nth-child(even) {
-    background-color: rgb(194, 194, 194);
+    background-color: rgba(194, 194, 194, 0.331);
   }
 
   &:nth-child(odd) {
@@ -26,25 +26,20 @@
 
     h2 {
       margin-top: 10px;
-      font-size: 1rem;
-      font-weight: 800;
+      font-size: 0.9rem;
+      font-weight: 400;
     }
 
     p {
       color: $green;
-      font-size: 2rem;
+      font-size: 1.2rem;
       margin: 10px 0;
-      font-weight: 800;
+      font-weight: 400;
     }
   }
 
   div.sortArrows {
-    i {
-      cursor: pointer;
-      font-size: 1.5rem;
-      margin-right: 20px;
-      margin: 7px 3px;
-      transition: 0.2s ease-out 0s;
+    .up {
       &:hover {
         color: #31a334;
       }

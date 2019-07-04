@@ -5,8 +5,24 @@ import { Link } from "react-router-dom";
 import { connect } from "react-redux";
 import { setUserView } from "../../../actions";
 
+import { makeStyles } from "@material-ui/core/styles";
+import Button from "@material-ui/core/Button";
+import FormControl from "@material-ui/core/FormControl";
+import Input from "@material-ui/core/Input";
+import InputLabel from "@material-ui/core/InputLabel";
+
+const useStyles = makeStyles(theme => ({
+  button: {
+    textDecoration: "none"
+  },
+  input: {
+    display: "none"
+  }
+}));
+
 const CardContainer = props => {
   const [filteredByStatus, setFBS] = useState("1");
+  const classes = useStyles();
 
   // sort array in buy, sell, all
   const realEstateSorter = () => {
@@ -60,13 +76,10 @@ const CardContainer = props => {
   // Real Estate objects based on view
   const [localRealEstate, setLocalRE] = useState(props.realEstate);
   // componentDidUpdate
-  useEffect(
-    () => {
-      const sorted = realEstateSorter();
-      setLocalRE(sorted);
-    },
-    [props.userView, props.realEstate, props.sortBy]
-  );
+  useEffect(() => {
+    const sorted = realEstateSorter();
+    setLocalRE(sorted);
+  }, [props.userView, props.realEstate, props.sortBy]);
   const [filterBySearch, seFilterBySearch] = useState("");
   const userView = props.userView ? (
     <p style={{ textAlign: "center", width: "150px" }}>
@@ -78,17 +91,17 @@ const CardContainer = props => {
   return (
     <div className={styles.cardContainerWrapper}>
       <div className={styles.flexTop}>
-        <div className={styles.filterResults}>
-          <label>Address Search:</label>
-          <input
+        <FormControl className={classes.formControl}>
+          <InputLabel htmlFor="component-simple">Address</InputLabel>
+          <Input
+            id="component-simple"
             value={filterBySearch}
             onChange={e => seFilterBySearch(e.target.value)}
-            type="text"
           />
-        </div>
+        </FormControl>
 
         <div className={styles.sliderDIV}>
-          {userView}
+          <span>{userView}</span>
           <input
             type="range"
             min="1"
@@ -113,8 +126,10 @@ const CardContainer = props => {
           />
         </div>
 
-        <Link to="/home/cards/new">
-          <button>New Estimate</button>
+        <Link to="/home/cards/new" style={{ textDecoration: "none" }}>
+          <Button color="primary" className={classes.button}>
+            New Estimate
+          </Button>
         </Link>
       </div>
       <div className={styles.cardContainer}>

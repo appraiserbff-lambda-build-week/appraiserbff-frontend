@@ -1,6 +1,5 @@
 import React from "react";
 import styles from "./card.module.scss";
-import { Link } from "react-router-dom";
 
 const Card = props => {
   return (
@@ -11,41 +10,40 @@ const Card = props => {
             style={{
               textAlign: "left",
               fontSize: "14px",
-              textDecoration: "underline"
+              textDecoration: "underline",
+              textAlign: "center"
             }}
           >
-            address
+            Property
           </p>
-          <p style={{ fontSize: "16px", padding: "2px" }}>
-            {props.item.address}
+          <p className={styles.fact}>{props.item.address}</p>
+          <p className={styles.fact}>
+            {props.item.city
+              .toLowerCase()
+              .split(" ")
+              .map(word => word[0].toUpperCase() + word.substring(1))
+              .join(" ")}
+            , {props.item.state} {props.item.zipcode}
+          </p>
+          <p className={styles.fact}>{props.item.age} years old</p>
+          <p className={styles.fact}>{props.item.lotSize} ft lot</p>
+          <p className={styles.fact}>
+            {props.item.bathrooms} bathrooms / {props.item.bedrooms} bedrooms
+          </p>
+          <p className={styles.fact}>
+            {props.mode === "sell" ? (
+              <span style={{ color: "green" }}>Selling</span>
+            ) : (
+              <span style={{ color: "#573143" }}>Buying</span>
+            )}
           </p>
         </div>
-        <img src={props.item.picture} alt="Property" />
       </div>
       <hr />
       <div className={styles.bottom}>
         <p>
-          estimate:
+          Estimate:
           <span>{props.item.zestimate ? `$${props.item.zestimate}` : ""}</span>
-        </p>
-        <p>
-          certainty:
-          <span>
-            {props.item.certainty ? `$${Math.round(props.item.certainty)}` : ""}
-          </span>
-        </p>
-      </div>
-      <hr />
-      <div className={styles.seeMore}>
-        <Link to={`/home/card/${props.item.id}`} style={{ color: "blue" }}>
-          see more details
-        </Link>
-        <p>
-          {props.mode === "sell" ? (
-            <span style={{ color: "green" }}>sell</span>
-          ) : (
-            <span style={{ color: "#573143" }}>buy</span>
-          )}
         </p>
       </div>
     </div>

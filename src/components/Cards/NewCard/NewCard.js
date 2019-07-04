@@ -6,14 +6,17 @@ import { connect } from "react-redux";
 import { addRealEstate } from "../../../actions";
 
 const NewCard = props => {
+  /*
+  This code really should be using a useReducer hook but we didn't know it at the time of writing.
+  I don't see the point in refactoring now so just leaving it as is, with its overly complex state.
+  */
   //info for top form
   const [address, setAddress] = useState("");
   const [city, setCity] = useState("");
   const [thisState, setThisState] = useState("");
   //info for bottom form
   const [sliderPos, setSliderPos] = useState(2);
-  //onst [yearBuilt, setYearBuilt] = useState("");
-  //const [perSqFt, setPerSqFt] = useState("");
+
   // info for backend
   const [zip, setZip] = useState("");
   const [sqFt, setSqFt] = useState("");
@@ -26,12 +29,14 @@ const NewCard = props => {
   const [yearAssessed, setYearAssessed] = useState("");
   const [taxes, setTaxes] = useState("");
   const [rooms, setRooms] = useState("");
+  const [zestimate, setZestimate] = useState("");
 
   const getInfoFromZillow = () => {
     // I think it can just be .replace(" ", "+")
     let splitAddress = address.split(" ").join("+");
     let splitCity = city.split(" ").join("+");
     const zillowURL = `&address=${splitAddress}&citystatezip=${splitCity}%2C+${thisState}+${zip}`;
+    console.log(zillowURL);
     const url = "../fetchZillow.php";
     const fetchData = {
       method: "POST",
@@ -54,7 +59,8 @@ const NewCard = props => {
           useCode: setProType,
           taxAssessmentYear: setYearAssessed,
           taxAssessment: setTaxes,
-          totalRooms: setRooms
+          totalRooms: setRooms,
+          amount: setZestimate
         };
 
         for (let dataType in dataTypeToHook) {
@@ -119,7 +125,8 @@ const NewCard = props => {
         mode: buySellConversion[sliderPos],
         yearAssessed,
         rooms: totalRooms,
-        taxes
+        taxes,
+        zestimate
       };
       //console.log(newProperty);
       //gunu have to also pass it buySell so it know where to put it

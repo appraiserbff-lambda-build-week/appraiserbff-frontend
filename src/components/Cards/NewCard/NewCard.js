@@ -5,7 +5,23 @@ import { Link } from "react-router-dom";
 import { connect } from "react-redux";
 import { addRealEstate } from "../../../actions";
 
+import { makeStyles } from "@material-ui/core/styles";
+import Button from "@material-ui/core/Button";
+import FormControl from "@material-ui/core/FormControl";
+import Input from "@material-ui/core/Input";
+import InputLabel from "@material-ui/core/InputLabel";
+
+const useStyles = makeStyles(theme => ({
+  button: {
+    textDecoration: "none"
+  },
+  input: {
+    display: "none"
+  }
+}));
+
 const NewCard = props => {
+  const classes = useStyles();
   /*
   This code really should be using a useReducer hook but we didn't know it at the time of writing.
   I don't see the point in refactoring now so just leaving it as is, with its overly complex state.
@@ -151,67 +167,77 @@ const NewCard = props => {
 
         <form className={styles.formOne}>
           <div>
-            <label>Address:</label>
-            <input
-              type="text"
-              value={address}
-              onChange={e => {
-                e.preventDefault();
-                setAddress(e.target.value);
-              }}
-            />
+            <FormControl className={classes.formControl}>
+              <InputLabel htmlFor="component-simple">Address</InputLabel>
+              <Input
+                id="component-simple"
+                value={address}
+                onChange={e => {
+                  setAddress(e.target.value);
+                }}
+              />
+            </FormControl>
           </div>
 
           <div>
-            <label>City:</label>
-            <input
-              type="text"
-              value={city}
-              onChange={e => {
-                e.preventDefault();
-                setCity(e.target.value);
-              }}
-            />
+            <FormControl className={classes.formControl}>
+              <InputLabel htmlFor="component-simple">City</InputLabel>
+              <Input
+                id="component-simple"
+                value={city}
+                onChange={e => {
+                  e.preventDefault();
+                  setCity(e.target.value);
+                }}
+              />
+            </FormControl>
           </div>
 
           <div>
-            <label>State:</label>
-            <input
-              type="text"
-              value={thisState}
-              onChange={e => {
-                e.preventDefault();
-                setThisState(e.target.value);
-              }}
-            />
+            <FormControl className={classes.formControl}>
+              <InputLabel htmlFor="component-simple">State</InputLabel>
+              <Input
+                id="component-simple"
+                value={thisState}
+                onChange={e => {
+                  e.preventDefault();
+                  setThisState(e.target.value);
+                }}
+              />
+            </FormControl>
           </div>
 
           <div>
-            <label>Zip:</label>
-            <input
-              type="text"
-              value={zip}
-              onChange={e => {
-                e.preventDefault();
-                setZip(e.target.value);
-              }}
-            />
+            <FormControl className={classes.formControl}>
+              <InputLabel htmlFor="component-simple">Zip</InputLabel>
+              <Input
+                id="component-simple"
+                value={zip}
+                onChange={e => {
+                  e.preventDefault();
+                  setZip(e.target.value);
+                }}
+              />
+            </FormControl>
           </div>
 
-          <button
+          <Button
             onClick={e => {
               e.preventDefault();
               getInfoFromZillow();
             }}
+            type="submit"
+            color="primary"
+            className={classes.button}
           >
-            get details
-          </button>
+            Submit
+          </Button>
         </form>
         <hr />
 
         <form className={styles.formTwo}>
           <div>
-            <label>bed:</label>
+            {/* <label>bed:</label>
             <input
               type="number"
               style={{ marginLeft: "87px" }}
@@ -222,11 +248,22 @@ const NewCard = props => {
               }}
               min="0"
               max="9"
-            />
+            /> */}
+            <FormControl className={classes.formControl}>
+              <InputLabel htmlFor="component-simple">Bed Count</InputLabel>
+              <Input
+                id="component-simple"
+                value={bed}
+                onChange={e => {
+                  e.preventDefault();
+                  setBed(e.target.value);
+                }}
+              />
+            </FormControl>
           </div>
 
           <div>
-            <label>bath:</label>
+            {/* <label>bath:</label>
             <input
               type="number"
               style={{ marginLeft: "82px" }}
@@ -237,11 +274,22 @@ const NewCard = props => {
               }}
               min="0"
               max="9"
-            />
+            /> */}
+            <FormControl className={classes.formControl}>
+              <InputLabel htmlFor="component-simple">Bath Count</InputLabel>
+              <Input
+                id="component-simple"
+                value={bath}
+                onChange={e => {
+                  e.preventDefault();
+                  setBath(e.target.value);
+                }}
+              />
+            </FormControl>
           </div>
 
           <div>
-            <label>sq footage:</label>
+            {/* <label>sq footage:</label>
             <input
               type="number"
               style={{ marginLeft: "38px" }}
@@ -251,11 +299,22 @@ const NewCard = props => {
                 setSqFt(e.target.value);
               }}
               min="0"
-            />
+            /> */}
+            <FormControl className={classes.formControl}>
+              <InputLabel htmlFor="component-simple">Sq. Footage</InputLabel>
+              <Input
+                id="component-simple"
+                value={sqFt}
+                onChange={e => {
+                  e.preventDefault();
+                  setSqFt(e.target.value);
+                }}
+              />
+            </FormControl>
           </div>
 
           <div>
-            <label>lot size:</label>
+            {/* <label>lot size:</label>
             <input
               type="number"
               style={{ marginLeft: "66px" }}
@@ -265,11 +324,22 @@ const NewCard = props => {
                 setLotSize(e.target.value);
               }}
               min="0"
-            />
+            /> */}
+            <FormControl className={classes.formControl}>
+              <InputLabel htmlFor="component-simple">Lot Size</InputLabel>
+              <Input
+                id="component-simple"
+                value={lotSize}
+                onChange={e => {
+                  e.preventDefault();
+                  setLotSize(e.target.value);
+                }}
+              />
+            </FormControl>
           </div>
 
           <div>
-            <label>HOA/month:</label>
+            {/* <label>HOA/month:</label>
             <input
               type="number"
               style={{ marginLeft: "30px" }}
@@ -279,24 +349,22 @@ const NewCard = props => {
                 setHoa(e.target.value);
               }}
               min="0"
-            />
+            /> */}
+            <FormControl className={classes.formControl}>
+              <InputLabel htmlFor="component-simple">HOA/Month</InputLabel>
+              <Input
+                id="component-simple"
+                value={hoa}
+                onChange={e => {
+                  e.preventDefault();
+                  setHoa(e.target.value);
+                }}
+              />
+            </FormControl>
           </div>
 
           <div>
-            <label>property type:</label>
-            <input
-              type="text"
-              style={{ marginLeft: "18px" }}
-              value={proType}
-              onChange={e => {
-                e.preventDefault();
-                setProType(e.target.value);
-              }}
-            />
-          </div>
-
-          <div>
-            <label>property age:</label>
+            {/* <label>property age:</label>
             <input
               type="number"
               style={{ marginLeft: "23px" }}
@@ -306,11 +374,22 @@ const NewCard = props => {
                 setProAge(e.target.value);
               }}
               min="0"
-            />
+            /> */}
+            <FormControl className={classes.formControl}>
+              <InputLabel htmlFor="component-simple">Property Age</InputLabel>
+              <Input
+                id="component-simple"
+                value={proAge}
+                onChange={e => {
+                  e.preventDefault();
+                  setProAge(e.target.value);
+                }}
+              />
+            </FormControl>
           </div>
 
           <div>
-            <label>year assessed:</label>
+            {/* <label>year assessed:</label>
             <input
               type="number"
               style={{ marginLeft: "14px" }}
@@ -320,11 +399,22 @@ const NewCard = props => {
                 setYearAssessed(e.target.value);
               }}
               min="1000"
-            />
+            /> */}
+            <FormControl className={classes.formControl}>
+              <InputLabel htmlFor="component-simple">Year Assessed</InputLabel>
+              <Input
+                id="component-simple"
+                value={yearAssessed}
+                onChange={e => {
+                  e.preventDefault();
+                  setYearAssessed(e.target.value);
+                }}
+              />
+            </FormControl>
           </div>
 
           <div>
-            <label>taxes:</label>
+            {/* <label>taxes:</label>
             <input
               type="number"
               style={{ marginLeft: "80px" }}
@@ -334,11 +424,22 @@ const NewCard = props => {
                 setTaxes(e.target.value);
               }}
               min="0"
-            />
+            /> */}
+            <FormControl className={classes.formControl}>
+              <InputLabel htmlFor="component-simple">Taxes</InputLabel>
+              <Input
+                id="component-simple"
+                value={taxes}
+                onChange={e => {
+                  e.preventDefault();
+                  setTaxes(e.target.value);
+                }}
+              />
+            </FormControl>
           </div>
 
           <div>
-            <label>rooms:</label>
+            {/* <label>rooms:</label>
             <input
               type="number"
               style={{ marginLeft: "74px" }}
@@ -347,14 +448,26 @@ const NewCard = props => {
                 e.preventDefault();
                 setRooms(e.target.value);
               }}
-            />
+            /> */}
+            <FormControl className={classes.formControl}>
+              <InputLabel htmlFor="component-simple">Num of Rooms</InputLabel>
+              <Input
+                id="component-simple"
+                onChange={e => {
+                  e.preventDefault();
+                  setRooms(e.target.value);
+                }}
+              />
+            </FormControl>
           </div>
 
-          <div style={{ display: "flex", alignItems: "center" }}>
+          <div
+            style={{ display: "flex", alignItems: "center", margin: "16px 0" }}
+          >
             {sliderPos === "1" ? (
-              <label style={{ fontSize: "26px", color: "red" }}>buy</label>
+              <label style={{ fontSize: "18px", color: "red" }}>buy</label>
             ) : (
-              <label style={{ fontSize: "26px", color: "green" }}>sell</label>
+              <label style={{ fontSize: "18px", color: "green" }}>sell</label>
             )}
             <input
               type="range"
@@ -367,14 +480,25 @@ const NewCard = props => {
             />
           </div>
 
-          <button
+          {/* <button
             onClick={e => {
               e.preventDefault();
               submitForm();
             }}
           >
             Submit Form
-          </button>
+          </button> */}
+          <Button
+            onClick={e => {
+              e.preventDefault();
+              submitForm();
+            }}
+            type="submit"
+            color="primary"
+            className={classes.button}
+          >
+            Submit Form
+          </Button>
         </form>
         <hr />
         {props.addRealEstateFail ? (

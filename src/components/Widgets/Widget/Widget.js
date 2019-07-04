@@ -4,6 +4,9 @@ import widgetData from "./widgetData.js";
 import { connect } from "react-redux";
 import { setSortBy } from "../../../actions";
 
+import KeyboardArrowUp from "@material-ui/icons/KeyboardArrowUp";
+import KeyboardArrowDown from "@material-ui/icons/KeyboardArrowDown";
+
 function Widget(props) {
   const localRealEstate =
     props.userView === "all"
@@ -25,13 +28,15 @@ function Widget(props) {
       </div>
       <div className={styles.sortArrows}>
         <p>
-          <i
+          <KeyboardArrowUp
+            style={{ cursor: "pointer" }}
+            className={`fas fa-sort-amount-up ${styles.up}`}
             onClick={() => updateSort(widgetObj.estateProp, "highToLow")}
-            className="fas fa-sort-amount-up"
           />
         </p>
         <p>
-          <i
+          <KeyboardArrowDown
+            style={{ cursor: "pointer" }}
             onClick={() => updateSort(widgetObj.estateProp, "lowToHigh")}
             className={`fas fa-sort-amount-up ${styles.down}`}
           />

@@ -132,7 +132,7 @@ const NewCard = props => {
         bedrooms: bed,
         bathrooms: bath,
         age: proAge,
-        picture: "https://i.imgur.com/ufZjaLz.jpg",
+        picture: "null",
         sqFt,
         lotSize,
         hoa,
